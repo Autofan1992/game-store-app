@@ -1,0 +1,29 @@
+.app-wrapper {
+  background: url("https://i.playground.ru/p/JMFyJFYzyIN-RdKastTQEQ.jpeg") fixed no-repeat center;
+  position: relative;
+  overflow: hidden;
+
+  &.full-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .rounded-styled-block {
+    padding: 20px 30px;
+    background-color: rgba(16, 15, 16, 0.7);
+    border-radius: 30px;
+  }
+
+  .app-content {
+    position: relative;
+  }
+}
