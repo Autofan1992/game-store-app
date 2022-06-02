@@ -4,12 +4,14 @@ import GameItem from './GameItem/GameItem'
 import { useAppSelector } from '../../redux/hooks'
 import { getVisibleGames } from '../../redux/selectors/games-selectors'
 import FilterGamesForm from './FilterGamesForm/FilterGamesForm'
+import SearchGamesForm from './SearchGamesForm/SearchGamesForm'
 
 const Games: FC = () => {
     const games = useAppSelector(getVisibleGames)
 
     return <Container className="py-5">
         <h1 className="text-center mb-5">Games</h1>
+        <SearchGamesForm/>
         <div className="row justify-content-center">
             <div className="col-lg-3">
                 <div className="filter-form rounded-styled-block">

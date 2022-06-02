@@ -4,20 +4,21 @@ import { AgesLimit, GamesGenres, GamesPlatforms, GamesSortCriteria, SortTypes } 
 
 const initialState = {
     games: gamesState,
+    searchName: undefined as string | undefined,
     filters: {
-        genres: [] as Array<GamesGenres>,
-        ageLimit: AgesLimit.All as AgesLimit,
-        sortType: SortTypes.Descending as SortTypes,
-        sortCriteria: GamesSortCriteria.Name as GamesSortCriteria,
-        gamePlatforms: GamesPlatforms.All as GamesPlatforms
+        genres: [] as GamesGenres[],
+        ageLimit: AgesLimit.All,
+        sortType: SortTypes.Ascending,
+        sortCriteria: undefined as GamesSortCriteria | undefined,
+        gamePlatforms: GamesPlatforms.All
     },
 }
 
 const gamesSlice = createSlice({
-    name: 'init',
+    name: 'games',
     initialState,
     reducers: {
-        setGenres: (state, { payload }: PayloadAction<Array<GamesGenres>>) => {
+        setGenres: (state, { payload }: PayloadAction<GamesGenres[]>) => {
             state.filters.genres = payload
         },
         setAgeLimit: (state, { payload }: PayloadAction<AgesLimit>) => {
@@ -32,11 +33,22 @@ const gamesSlice = createSlice({
         setGamePlatforms: (state, { payload }: PayloadAction<GamesPlatforms>) => {
             state.filters.gamePlatforms = payload
         },
+        setGamesSearchName: (state, { payload }: PayloadAction<string>) => {
+            state.searchName = payload
+        },
         resetFilters: (state) => {
             state.filters = initialState.filters
         }
     },
 })
 
-export const { setGenres, setSortType, setSortCriteria, setGamePlatforms, resetFilters, setAgeLimit } = gamesSlice.actions
+export const {
+    setGenres,
+    setSortType,
+    setSortCriteria,
+    setGamePlatforms,
+    resetFilters,
+    setAgeLimit,
+    setGamesSearchName
+} = gamesSlice.actions
 export default gamesSlice.reducer

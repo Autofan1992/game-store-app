@@ -59,6 +59,10 @@ const gamePlatforms = [
 ]
 const sortCriteria = [
     {
+        value: undefined,
+        label: 'Select sort criteria',
+    },
+    {
         value: GamesSortCriteria.Name,
         label: 'Name'
     },
@@ -66,19 +70,19 @@ const sortCriteria = [
         value: GamesSortCriteria.Rating,
         label: 'Rating'
     },
-/*    {
-        value: GamesSortCriteria.Price,
-        label: 'Price'
-    },*/
+    /*    {
+            value: GamesSortCriteria.Price,
+            label: 'Price'
+        },*/
 ]
 const sortTypes = [
     {
-        value: SortTypes.Descending,
-        label: 'Descending'
-    },
-    {
         value: SortTypes.Ascending,
         label: 'Ascending'
+    },
+    {
+        value: SortTypes.Descending,
+        label: 'Descending'
     },
 ]
 
@@ -96,7 +100,7 @@ const FilterGamesForm = () => {
             if (sortCriteria) dispatch(setSortCriteria(sortCriteria))
         }}
     >
-        {({ handleSubmit, touched, resetForm, errors, values, handleChange }) => (
+        {({ handleSubmit, resetForm, values, handleChange }) => (
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <label className="d-block">
@@ -151,6 +155,30 @@ const FilterGamesForm = () => {
                             value: GamesGenres.Action
                         })}
                         <p className="ms-2">{GamesGenres.Action}</p>
+                    </label>
+                    <label className="d-flex mt-2">
+                        {createCheckbox('genres', {
+                            onChange: handleChange,
+                            checked: values.genres.includes(GamesGenres.Simulator),
+                            value: GamesGenres.Simulator
+                        })}
+                        <p className="ms-2">{GamesGenres.Simulator}</p>
+                    </label>
+                    <label className="d-flex mt-2">
+                        {createCheckbox('genres', {
+                            onChange: handleChange,
+                            checked: values.genres.includes(GamesGenres.Shooter),
+                            value: GamesGenres.Shooter
+                        })}
+                        <p className="ms-2">{GamesGenres.Shooter}</p>
+                    </label>
+                    <label className="d-flex mt-2">
+                        {createCheckbox('genres', {
+                            onChange: handleChange,
+                            checked: values.genres.includes(GamesGenres.Sandbox),
+                            value: GamesGenres.Sandbox
+                        })}
+                        <p className="ms-2">{GamesGenres.Sandbox}</p>
                     </label>
                 </Form.Group>
                 <ButtonGroup>
