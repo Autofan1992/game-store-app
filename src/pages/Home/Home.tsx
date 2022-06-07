@@ -1,11 +1,11 @@
 import { Container } from 'react-bootstrap'
 import { FC } from 'react'
 import { useAppSelector } from '../../redux/hooks'
-import { getNewestGames } from '../../redux/selectors/games-selectors'
-import GameItem from '../Games/GameItem/GameItem'
+import { selectNewestGames } from '../../redux/selectors/games-selectors'
+import GameItem from '../../components/Games/GameItem/GameItem'
 
 const Home: FC = () => {
-    const visibleGames = useAppSelector(getNewestGames)
+    const visibleGames = useAppSelector(selectNewestGames)
 
     return <Container className="py-5">
         <h1 className="text-center mb-5">Home</h1>

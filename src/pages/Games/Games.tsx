@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { Container } from 'react-bootstrap'
-import GameItem from './GameItem/GameItem'
+import GameItem from '../../components/Games/GameItem/GameItem'
 import { useAppSelector } from '../../redux/hooks'
-import { getVisibleGames } from '../../redux/selectors/games-selectors'
-import FilterGamesForm from './FilterGamesForm/FilterGamesForm'
-import SearchGamesForm from './SearchGamesForm/SearchGamesForm'
+import { selectVisibleGames } from '../../redux/selectors/games-selectors'
+import FilterGamesForm from '../../components/Games/FilterGamesForm/FilterGamesForm'
+import SearchGamesForm from '../../components/Games/SearchGamesForm/SearchGamesForm'
 
 const Games: FC = () => {
-    const games = useAppSelector(getVisibleGames)
+    const games = useAppSelector(selectVisibleGames)
 
     return <Container className="py-5">
         <h1 className="text-center mb-5">Games</h1>

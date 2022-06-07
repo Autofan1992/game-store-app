@@ -3,11 +3,11 @@ import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import Preloader from '../common/Preloader/Preloader'
 import NotFound from '../common/404/NotFound'
-import Home from '../Home/Home'
-import Games from '../Games/Games'
+import Home from '../../pages/Home/Home'
+import Games from '../../pages/Games/Games'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import About from '../About/About'
+import About from '../../pages/About/About'
 
 const App: FC = () => {
     return (

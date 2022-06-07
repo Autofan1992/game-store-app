@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { Button, ButtonGroup, Form } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { getGamesFilters } from '../../../redux/selectors/games-selectors'
+import { selectGamesFilters } from '../../../redux/selectors/games-selectors'
 import {
     resetFilters,
     setAgeLimit,
@@ -88,7 +88,7 @@ const sortTypes = [
 
 const FilterGamesForm = () => {
     const dispatch = useAppDispatch()
-    const filters = useAppSelector(getGamesFilters)
+    const filters = useAppSelector(selectGamesFilters)
 
     return <Formik
         initialValues={filters}

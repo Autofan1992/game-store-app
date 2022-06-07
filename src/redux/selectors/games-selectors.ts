@@ -2,13 +2,13 @@ import { RootStateType } from '../store'
 import { createSelector } from 'reselect'
 import { AgesLimit, GamesGenres, GamesPlatforms, GamesSortCriteria, SortTypes } from '../../types/game-card-types'
 
-export const getNewestGames = (state: RootStateType) => state.gamesPage.games.slice(0, 3)
-export const getAllGames = (state: RootStateType) => state.gamesPage.games
-export const getGamesFilters = (state: RootStateType) => state.gamesPage.filters
-export const getGamesSearchName = (state: RootStateType) => state.gamesPage.searchName
+export const selectNewestGames = (state: RootStateType) => state.gamesPage.games.slice(0, 3)
+export const selectAllGames = (state: RootStateType) => state.gamesPage.games
+export const selectGamesFilters = (state: RootStateType) => state.gamesPage.filters
+export const selectGamesSearchName = (state: RootStateType) => state.gamesPage.searchName
 
-export const getVisibleGames = createSelector(
-    [getAllGames, getGamesSearchName, getGamesFilters],
+export const selectVisibleGames = createSelector(
+    [selectAllGames, selectGamesSearchName, selectGamesFilters],
     (games, name, { ageLimit, genres, sortCriteria, sortType, gamePlatforms }) => {
         let availableGames = games
 
