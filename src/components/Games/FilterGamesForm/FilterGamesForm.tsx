@@ -8,7 +8,7 @@ import {
     setGamePlatforms,
     setGenres, setSortCriteria,
     setSortType
-} from '../../../redux/reducers/games-reducer'
+} from '../../../redux/slices/games-slice'
 import { createCheckbox, createSelectField } from '../../../helpers/CustomField'
 import { AgesLimit, GamesGenres, GamesPlatforms, GamesSortCriteria, SortTypes } from '../../../types/game-card-types'
 

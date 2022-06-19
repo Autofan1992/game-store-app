@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { Button, Col, Form, Row, Stack } from 'react-bootstrap'
 import { useAppDispatch } from '../../../redux/hooks'
-import { setGamesSearchName } from '../../../redux/reducers/games-reducer'
+import { setGamesSearchName } from '../../../redux/slices/games-slice'
 import { createTextField } from '../../../helpers/CustomField'
 
 const SearchGamesForm = () => {
