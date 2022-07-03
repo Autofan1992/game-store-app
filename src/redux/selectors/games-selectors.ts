@@ -33,16 +33,16 @@ export const selectVisibleGames = createSelector(
                 availableGames = [...availableGames].sort((a, b) => (a.name > b.name) ? 1 : -1)
             }
             if (sortCriteria === GamesSortCriteria.Rating) {
-                availableGames = [...availableGames].sort((a, b) => a.rating - b.rating).reverse()
+                availableGames = [...availableGames].sort((a, b) => b.rating - a.rating)
             }
             if (sortCriteria === GamesSortCriteria.Price) {
-                availableGames = [...availableGames].sort((a, b) => a.price - b.price).reverse()
+                availableGames = [...availableGames].sort((a, b) => b.price - a.price)
             }
         }
 
         if (sortType === SortTypes.Ascending) {
             if (sortCriteria === GamesSortCriteria.Name) {
-                availableGames = [...availableGames].sort((a, b) => (a.name > b.name) ? 1 : -1).reverse()
+                availableGames = [...availableGames].sort((a, b) => (a.name > b.name) ? -1 : 1)
             }
             if (sortCriteria === GamesSortCriteria.Rating) {
                 availableGames = [...availableGames].sort((a, b) => a.rating - b.rating)
