@@ -1,6 +1,6 @@
 import { RootStateType } from '../store'
-import { createSelector } from 'reselect'
 import { AgesLimit, GamesGenres, GamesPlatforms, GamesSortCriteria, SortTypes } from '../../types/game-card-types'
+import { createSelector } from '@reduxjs/toolkit'
 
 export const selectNewestGames = (state: RootStateType) => state.gamesPage.games.slice(0, 3)
 export const selectAllGames = (state: RootStateType) => state.gamesPage.games
