@@ -70,10 +70,10 @@ const sortCriteria = [
         value: GamesSortCriteria.Rating,
         label: 'Rating'
     },
-    /*    {
-            value: GamesSortCriteria.Price,
-            label: 'Price'
-        },*/
+    {
+        value: GamesSortCriteria.Price,
+        label: 'Price'
+    },
 ]
 const sortTypes = [
     {
