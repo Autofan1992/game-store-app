@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { FC } from 'react'
 import { GameCardType, GamePlatformType } from '../../../types/game-card-types'
 import { Link } from 'react-router-dom'
@@ -6,12 +6,16 @@ import styles from './GameItem.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlaystation, faWindows, faXbox } from '@fortawesome/free-brands-svg-icons'
 import { Rating } from 'react-simple-star-rating'
+import { formatCurrency } from '../../../helpers/formatCurrency'
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
+import { selectCartItemQuantity } from '../../../redux/selectors/cart-selectors'
+import { decreaseCartItemQuantity, increaseCartItemQuantity, removeCartItem } from '../../../redux/slices/cart-slice'
 
 const defaultImage =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png'
 
-const GameItem: FC<GameCardType & GamePlatformType> = (
-    {
+const GameItem: FC<GameCardType & GamePlatformType> = (props) => {
+    const {
         alt,
         amount,
         description,
@@ -23,8 +27,15 @@ const GameItem: FC<GameCardType & GamePlatformType> = (
         rating,
         price,
         platform
-    }) => {
+    } = props
+
     const ratingValuePercent = rating / 5 * 100
+    const itemQuantity = useAppSelector(state => selectCartItemQuantity(state, id))
+    const dispatch = useAppDispatch()
+
+    const onCartItemIncrease = () => dispatch(increaseCartItemQuantity(props))
+    const onCartItemDecrease = () => dispatch(decreaseCartItemQuantity(props))
+    const onCartItemRemove = () => dispatch(removeCartItem(id))
 
     return <div className="col-lg-4 text-black">
         <Card className={styles.gameCard}>
@@ -34,9 +45,9 @@ const GameItem: FC<GameCardType & GamePlatformType> = (
                     {platform?.playstation && <FontAwesomeIcon icon={faPlaystation}/>}
                     {platform?.xbox && <FontAwesomeIcon icon={faXbox}/>}
                 </div>
-                <Card.Img className={styles.cardImg} src={image ?? defaultImage}/>
+                <Card.Img className={styles.cardImg} src={image ?? defaultImage} alt={alt}/>
             </div>
-            <Card.Body>
+            <Card.Body className={styles.gameCardBody}>
                 <div className="mb-3">
                     <Rating
                         ratingValue={ratingValuePercent}
@@ -49,9 +60,24 @@ const GameItem: FC<GameCardType & GamePlatformType> = (
                 </div>
                 <Card.Title>{name}</Card.Title>
                 <h6>Genre: {genre}</h6>
-                <h6>Age Limit: {ageLimit}</h6>
+                <h6>Age Limit: {ageLimit}+</h6>
                 <Card.Text>{description.substring(0, 100)}...</Card.Text>
-                <Link to={`games/${id}`} className="btn btn-outline-dark">See more info</Link>
+                <h6 className="mt-auto mb-4">Price: {formatCurrency(price)}</h6>
+                {itemQuantity > 0
+                    ? <div className="text-center">
+                        <div className="d-flex align-items-center justify-content-center gap-2">
+                            <Button onClick={onCartItemDecrease}>-</Button>
+                            <div>
+                                <span className="fs-3 me-2">{itemQuantity}</span>
+                                <span>in cart</span>
+                            </div>
+                            <Button onClick={onCartItemIncrease}>+</Button>
+                        </div>
+                        <Button size="sm" variant="danger" className="mt-2" onClick={onCartItemRemove}>Remove</Button>
+                    </div>
+                    : <Button variant="outline-primary" onClick={onCartItemIncrease}>Add to cart</Button>
+                }
+                <Link to={`games/${id}`} className="btn btn-outline-dark mt-2">See more info</Link>
             </Card.Body>
         </Card>
     </div>

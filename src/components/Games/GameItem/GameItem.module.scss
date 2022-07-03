@@ -4,6 +4,7 @@
   border: none;
   overflow: hidden;
 
+
   .cardImgBlock {
     .icons {
       color: #fff;
@@ -18,6 +19,11 @@
     .cardImg {
       aspect-ratio: 1 / 1;
     }
+  }
+
+  .gameCardBody {
+    display: flex;
+    flex-direction: column;
   }
 
   .stars {

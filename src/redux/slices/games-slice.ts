@@ -51,4 +51,5 @@ export const {
     setAgeLimit,
     setGamesSearchName
 } = gamesSlice.actions
+
 export default gamesSlice.reducer

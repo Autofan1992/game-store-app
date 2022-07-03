@@ -1,12 +1,21 @@
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Badge, Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import { FC } from 'react'
+import CartIcon from '../common/Icons/CartIcon'
+import styles from './Header.module.scss'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { selectCartItemsCount } from '../../redux/selectors/cart-selectors'
+import { setShowCanvas } from '../../redux/slices/cart-slice'
 
 const Header: FC = () => {
     const { pathname } = useLocation()
+    const dispatch = useAppDispatch()
+    const cartItemsCount = useAppSelector(selectCartItemsCount)
 
-    return <header className="header">
-        <Navbar bg="dark" variant="dark" expand="md">
+    const handleCartOffCanvasShow = () => dispatch(setShowCanvas(true))
+
+    return <header className={styles.header}>
+        <Navbar bg="dark" variant="dark" expand="md" fixed="top">
             <Container>
                 <Navbar.Brand href="#home">Games Store</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -27,6 +36,11 @@ const Header: FC = () => {
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+                <Button className="rounded-circle text-white" variant="outline-primary"
+                        onClick={handleCartOffCanvasShow}>
+                    <CartIcon size={20}/>
+                    <Badge bg="danger" className={`rounded-circle ${styles.cartBadge}`}>{cartItemsCount}</Badge>
+                </Button>
             </Container>
         </Navbar>
     </header>
