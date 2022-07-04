@@ -6,6 +6,8 @@
 
 
   .cardImgBlock {
+    position: relative;
+
     .icons {
       color: #fff;
       position: absolute;
@@ -16,8 +18,24 @@
         margin: 0 5px;
       }
     }
+
     .cardImg {
-      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      height: 250px;
+
+      &.isGamesPage {
+        height: 400px;
+      }
+    }
+
+    .ratingBlock {
+      position: absolute;
+      left: 15px;
+      bottom: 15px;
+      backdrop-filter: blur(10px);
+      line-height: 1;
+      padding: 0.2rem;
+      border-radius: 5px;
     }
   }
 

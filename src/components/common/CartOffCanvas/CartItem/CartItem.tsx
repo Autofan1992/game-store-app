@@ -29,7 +29,9 @@ const CartItem: FC<CartItemType> = (props) => {
             <div className="ms-3">
                 <p className="name mb-0">
                     <span>{name}</span>
-                    <span className="text-muted ms-2">x{quantity}</span>
+                    {quantity > 1 &&
+                        <span className="text-muted ms-2">x{quantity}</span>
+                    }
                 </p>
                 <p className="text-muted mb-0">{formatCurrency(price)}</p>
             </div>

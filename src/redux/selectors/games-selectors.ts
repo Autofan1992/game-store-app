@@ -56,3 +56,7 @@ export const selectVisibleGames = createSelector(
     }
 )
 
+export const selectGame = createSelector(
+    [selectAllGames, (state, id: number) => id],
+    (games, id) => games.find(game => game.id === id)
+)
