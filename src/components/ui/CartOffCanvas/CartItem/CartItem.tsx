@@ -10,7 +10,6 @@ import styles from './CartItem.module.scss'
 const CartItem: FC<CartItemType> = (props) => {
     const {
         alt,
-        amount,
         id,
         image,
         name,
