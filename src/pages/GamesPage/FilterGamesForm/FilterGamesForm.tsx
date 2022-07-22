@@ -128,12 +128,14 @@ const FilterGamesForm = () => {
                             <p className="ms-2">{GamesGenres.Sandbox}</p>
                         </label>
                     </Form.Group>
-                    <ButtonGroup>
+                    <ButtonGroup className="d-flex">
                         <Button
+                            className="w-100"
                             variant="outline-primary"
                             type="submit"
                         >Apply filters</Button>
                         <Button
+                            className="w-100"
                             variant="outline-danger"
                             onClick={() => {
                                 dispatch(resetFilters())

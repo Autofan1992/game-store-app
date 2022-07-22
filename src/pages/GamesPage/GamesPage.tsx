@@ -27,7 +27,7 @@ const GamesPage: FC = memo(() => {
             <h1 className="text-center mb-5">Games</h1>
             <SearchGamesForm/>
             <div className="row justify-content-center">
-                <div className="col-lg-3">
+                <div className="col-lg-3 mb-3 mb-lg-0">
                     <div className="filter-form rounded-styled-block">
                         <div className="form-title">
                             {appWindowWidth < 992 && (
