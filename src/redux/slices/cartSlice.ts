@@ -1,11 +1,30 @@
 import { GameCardType } from '../../types/gameCardTypes'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CartItemType } from '../../types/cartTypes'
+import { RootStateType } from '../store'
+import { paymentApi } from '../../api/paymentApi'
+import { loadStripe } from '@stripe/stripe-js'
 
 const initialState = {
+    isFetching: false,
     showOffCanvas: false,
     items: [] as CartItemType[]
 }
+
+export const onCheckout = createAsyncThunk<void, undefined, { state: RootStateType }>(
+    'checkoutHandle',
+    async (_, { getState }) => {
+        const { cart: { items } } = getState()
+
+        try {
+            const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_API_KEY as string)
+            const { data: { id } } = await paymentApi.checkoutHandle(items)
+
+            stripePromise?.redirectToCheckout({ sessionId: id })
+        } catch (e) {
+            console.warn(e)
+        }
+    })
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -35,6 +54,18 @@ const cartSlice = createSlice({
         removeCartItem(state, { payload }: PayloadAction<number>) {
             state.items = state.items.filter(item => item.id !== payload)
         },
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(onCheckout.pending, state => {
+                state.isFetching = true
+            })
+            .addCase(onCheckout.fulfilled, state => {
+                state.isFetching = false
+            })
+            .addCase(onCheckout.rejected, state => {
+                state.isFetching = false
+            })
     }
 })
 
