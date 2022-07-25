@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom'
 import { FC } from 'react'
-import { Button, Offcanvas, Stack } from 'react-bootstrap'
+import { Button, Offcanvas, Spinner, Stack } from 'react-bootstrap'
 import {
+    selectCartIsFetching,
     selectCartItems,
     selectCartItemsTotalPrice,
     selectShowCartOffCanvas
@@ -16,6 +17,7 @@ const CartOffCanvas: FC = () => {
     const items = useAppSelector(selectCartItems)
     const dispatch = useAppDispatch()
     const totalItemsPrice = useAppSelector(selectCartItemsTotalPrice)
+    const isFetching = useAppSelector(selectCartIsFetching)
 
     const handleClose = () => dispatch(setShowCanvas(false))
     const cartCheckoutHandle = () => dispatch(onCheckout())
@@ -26,21 +28,25 @@ const CartOffCanvas: FC = () => {
                 <Offcanvas.Title>Cart</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className="d-flex flex-column">
-                {items.length > 0
-                    ? (
-                        <>
-                            <Stack gap={3} className="flex-fill justify-content-center">
-                                {items.map(item => <CartItem key={item.id} {...item}/>)}
-                            </Stack>
-                            <div className="text-end mt-4">
-                                <h4 className="fw-bold">Total: {formatCurrency(totalItemsPrice)}</h4>
-                            </div>
-                            <div className="text-center mt-4">
-                                <Button variant="success" onClick={cartCheckoutHandle}>Proceed to payment</Button>
-                            </div>
-                        </>
-                    )
-                    : <h6 className="text-center">No items in the cart. Time to add some!</h6>
+                {isFetching
+                    ? <Spinner animation="border"/>
+                    : items.length > 0
+                        ? (
+                            <>
+                                <Stack gap={3} className="flex-fill justify-content-center">
+                                    {items.map(item => <CartItem key={item.id} {...item}/>)}
+                                </Stack>
+                                <div className="text-end mt-4">
+                                    <h4 className="fw-bold">Total: {formatCurrency(totalItemsPrice)}</h4>
+                                </div>
+                                <div className="text-center mt-4">
+                                    <Button variant="success" disabled={isFetching} onClick={cartCheckoutHandle}>Proceed
+                                        to
+                                        payment</Button>
+                                </div>
+                            </>
+                        )
+                        : <h6 className="text-center">No items in the cart. Time to add some!</h6>
                 }
             </Offcanvas.Body>
         </Offcanvas>,

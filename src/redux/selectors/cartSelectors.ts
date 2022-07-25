@@ -3,6 +3,7 @@ import { createSelector } from '@reduxjs/toolkit'
 
 export const selectCartItems = (state: RootStateType) => state.cart.items
 export const selectShowCartOffCanvas = (state: RootStateType) => state.cart.showOffCanvas
+export const selectCartIsFetching = (state: RootStateType) => state.cart.isFetching
 
 export const selectCartItemQuantity = createSelector(
     [selectCartItems, (state: RootStateType, id: number) => id],

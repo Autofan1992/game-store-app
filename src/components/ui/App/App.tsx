@@ -8,29 +8,27 @@ import GamesPage from '../../../pages/GamesPage/GamesPage'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import AboutPage from '../../../pages/AboutPage/AboutPage'
-import CartOffCanvas from '../CartOffCanvas/CartOffCanvas'
 import GamePage from '../../../pages/GamePage/GamePage'
+import { ThanksPage } from '../../../pages/ThanksPage/ThanksPage'
 
 const App: FC = () => {
     return (
-        <>
-            <div className="app-wrapper text-white full-screen">
-                <Header/>
-                <main className="app-content">
-                    <Suspense fallback={<Preloader/>}>
-                        <Routes>
-                            <Route path="/" element={<HomePage/>}/>
-                            <Route path="games" element={<GamesPage/>}/>
-                            <Route path="games/:id" element={<GamePage/>}/>
-                            <Route path="about" element={<AboutPage/>}/>
-                            <Route path="*" element={<NotFoundPage/>}/>
-                        </Routes>
-                    </Suspense>
-                </main>
-                <Footer/>
-            </div>
-            <CartOffCanvas/>
-        </>
+        <div className="app-wrapper text-white full-screen">
+            <Header/>
+            <main className="app-content">
+                <Suspense fallback={<Preloader/>}>
+                    <Routes>
+                        <Route path="/" element={<HomePage/>}/>
+                        <Route path="games" element={<GamesPage/>}/>
+                        <Route path="games/:id" element={<GamePage/>}/>
+                        <Route path="about" element={<AboutPage/>}/>
+                        <Route path="thanks" element={<ThanksPage/>}/>
+                        <Route path="*" element={<NotFoundPage/>}/>
+                    </Routes>
+                </Suspense>
+            </main>
+            <Footer/>
+        </div>
     )
 }
 

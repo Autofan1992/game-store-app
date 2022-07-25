@@ -1,11 +1,29 @@
 import { Container } from 'react-bootstrap'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useAppSelector } from '../../redux/hooks/hooks'
 import { selectNewestGames } from '../../redux/selectors/gamesSelectors'
 import GameItem from '../../components/ui/GameItem/GameItem'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useAppContext } from '../../context/appContext'
 
 const HomePage: FC = () => {
     const visibleGames = useAppSelector(selectNewestGames)
+    const { toastShowHandle } = useAppContext()
+    const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (searchParams) {
+            const isPaymentSuccess = searchParams.get('success')
+            const isPaymentCanceled = searchParams.get('canceled')
+
+            if (isPaymentSuccess === 'true') navigate('/thanks')
+            if (isPaymentCanceled === 'true') {
+                searchParams.set('canceled', 'false')
+                toastShowHandle('The payment was cancelled')
+            }
+        }
+    }, [navigate, searchParams, toastShowHandle])
 
     return (
         <Container className="py-5">
