@@ -28,7 +28,7 @@ export const onCheckout = createAsyncThunk<
             data: { id },
         } = await paymentApi.checkoutHandle(items)
 
-        stripePromise?.redirectToCheckout({ sessionId: id })
+        await stripePromise?.redirectToCheckout({ sessionId: id })
     } catch (e) {
         console.warn(e)
     }
