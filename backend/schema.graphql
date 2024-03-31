@@ -1,0 +1,124 @@
+type Comment {
+  createdAt: Date!
+  game: Game!
+  id: ID!
+  text: String!
+  updatedAt: Date!
+  user: User!
+}
+
+input ConnectionInputPagination {
+  skip: Int
+  take: Int
+}
+
+input CreateGameInput {
+  ageLimit: Int!
+  amount: Int!
+  description: String!
+  genre: String!
+  imageId: String!
+  name: String!
+  platform: [GamePlatform!]!
+  price: Float!
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+scalar File
+
+type Game {
+  ageLimit: Int!
+  amount: Int!
+  comments: [Comment!]!
+  createdAt: Date!
+  description: String!
+  genre: String!
+  id: ID!
+  image: Resource!
+  likes: Int!
+  name: String!
+  platform: [GamePlatform!]!
+  price: Float!
+  updatedAt: Date!
+  user: User!
+  views: Int!
+}
+
+input GameConnectionInput {
+  pagination: ConnectionInputPagination
+  where: GameConnectionInputWhere
+}
+
+input GameConnectionInputWhere {
+  ageLimit: Int
+  genres: [String!]
+  orderBy: OrderBy = asc
+  platforms: [GamePlatform!]
+  sortCriteria: GameSortCriteria
+}
+
+type GameConnectionResponse {
+  hasMore: Boolean!
+  nodes: [Game!]!
+  totalCount: Int!
+}
+
+input GameInput {
+  id: String!
+}
+
+enum GamePlatform {
+  Pc
+  Playstation
+  Xbox
+}
+
+enum GameSortCriteria {
+  name
+  price
+  rating
+}
+
+type Mutation {
+  createGame(input: CreateGameInput!): Game!
+}
+
+enum OrderBy {
+  asc
+  desc
+}
+
+type Query {
+  game(input: GameInput!): Game
+  gameConnection(input: GameConnectionInput): GameConnectionResponse!
+  me: User
+}
+
+type Resource {
+  id: ID!
+  mimetype: String!
+  name: String!
+  url: String!
+}
+
+input UploadResourceInput {
+  resource: File!
+}
+
+type User {
+  avatar: String
+  createdAt: Date!
+  email: String!
+  id: ID!
+  role: UserRole!
+  updatedAt: Date!
+}
+
+enum UserRole {
+  Admin
+  User
+}

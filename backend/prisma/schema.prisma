@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String    @unique
+  avatar    String?
+  role      UserRole  @default(User)
+  comments  Comment[]
+  games     Game[]
+}
+
+model Game {
+  id          String         @id @default(uuid())
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  ageLimit    Int
+  price       Float
+  platform    GamePlatform[]
+  description String
+  genre       String
+  rating      Float?
+  name        String
+  amount      Int            @default(1)
+  likes       Int            @default(0)
+  resourceId  String
+  comments    Comment[]
+  views       Int            @default(0)
+  image       Resource       @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  text      String
+  gameId    String
+  userId    String
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Resource {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  url       String
+  mimeType  String
+  Game      Game[]
+}
+
+enum UserRole {
+  User
+  Admin
+}
+
+enum GamePlatform {
+  Pc
+  Playstation
+  Xbox
+}

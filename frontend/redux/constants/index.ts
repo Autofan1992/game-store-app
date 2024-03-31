@@ -1,0 +1,1 @@
+export const DEFAULT_VISIBLE_GAMES_COUNT = 10
