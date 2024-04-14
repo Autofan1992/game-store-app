@@ -10,4 +10,3 @@ fragment User on User {
     email
     avatar
 }
-

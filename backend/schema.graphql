@@ -12,6 +12,11 @@ input ConnectionInputPagination {
   take: Int
 }
 
+input CreateCommentInput {
+  gameId: String!
+  text: String!
+}
+
 input CreateGameInput {
   ageLimit: Int!
   amount: Int!
@@ -32,6 +37,7 @@ scalar File
 
 type Game {
   ageLimit: Int!
+  aggregate: GameAggregate!
   amount: Int!
   comments: [Comment!]!
   createdAt: Date!
@@ -39,13 +45,18 @@ type Game {
   genre: String!
   id: ID!
   image: Resource!
-  likes: Int!
+  isLiked: Boolean!
   name: String!
   platform: [GamePlatform!]!
   price: Float!
   updatedAt: Date!
   user: User!
   views: Int!
+}
+
+type GameAggregate {
+  likes: Int!
+  rating: Float
 }
 
 input GameConnectionInput {
@@ -56,6 +67,7 @@ input GameConnectionInput {
 input GameConnectionInputWhere {
   ageLimit: Int
   genres: [String!]
+  name: String
   orderBy: OrderBy = asc
   platforms: [GamePlatform!]
   sortCriteria: GameSortCriteria
@@ -84,12 +96,27 @@ enum GameSortCriteria {
 }
 
 type Mutation {
+  createComment(input: CreateCommentInput!): Comment!
   createGame(input: CreateGameInput!): Game!
+  patchGame(input: PatchGameInput!): Game!
 }
 
 enum OrderBy {
   asc
   desc
+}
+
+input PatchGameInput {
+  ageLimit: Int
+  amount: Int
+  description: String
+  genre: String
+  id: String!
+  imageId: String
+  like: Boolean
+  name: String
+  price: Float
+  rating: Float
 }
 
 type Query {

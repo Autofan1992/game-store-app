@@ -1,56 +1,55 @@
 .gameCard {
-  border-radius: 10px;
-  border: none;
+    border-radius: 10px;
+    border: none;
 
+    .cardImgBlock {
+        position: relative;
 
-  .cardImgBlock {
-    position: relative;
+        .icons {
+            color: #fff;
+            position: absolute;
+            background-color: rgba(20, 20, 27, 0.7);
+            border-top-left-radius: inherit;
 
-    .icons {
-      color: #fff;
-      position: absolute;
-      background-color: rgba(20, 20, 27, 0.7);
-      border-top-left-radius: inherit;
+            svg {
+                margin: 0 5px;
+            }
+        }
 
-      svg {
-        margin: 0 5px;
-      }
+        .cardImg {
+            height: 250px;
+            display: block;
+
+            img {
+                max-height: 100%;
+                object-fit: cover;
+            }
+
+            &.isGamesPage {
+                height: 400px;
+            }
+        }
+
+        .ratingBlock {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            backdrop-filter: blur(10px);
+            line-height: 1;
+            padding: 0.2rem;
+            border-radius: 5px;
+        }
     }
 
-    .cardImg {
-      height: 250px;
-      display: block;
-
-      img {
-        max-height: 100%;
-        object-fit: cover;
-      }
-
-      &.isGamesPage {
-        height: 400px;
-      }
+    .gameCardBody {
+        display: flex;
+        flex-direction: column;
     }
 
-    .ratingBlock {
-      position: absolute;
-      left: 15px;
-      bottom: 15px;
-      backdrop-filter: blur(10px);
-      line-height: 1;
-      padding: 0.2rem;
-      border-radius: 5px;
+    .stars {
+        color: #fbe562;
+        text-align: left;
+        font-size: 12px;
+        padding-left: 5px;
     }
-  }
-
-  .gameCardBody {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stars {
-    color: #fbe562;
-    text-align: left;
-    font-size: 12px;
-    padding-left: 5px;
-  }
 }

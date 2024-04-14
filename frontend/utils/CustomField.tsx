@@ -25,11 +25,11 @@ export const createSelectField = <NP extends string>(
     options: Array<OptionHTMLAttributes<HTMLOptionElement>>,
     props = {},
 ) => (
-        <Form.Select defaultValue={defaultValue} name={name} {...props}>
-            {options.map((option, index) => (
-                <option key={index} {...option}>
-                    {option.label}
-                </option>
-            ))}
-        </Form.Select>
-    )
+    <Form.Select defaultValue={defaultValue} name={name} {...props}>
+        {options.map((option, index) => (
+            <option key={index} {...option}>
+                {option.label}
+            </option>
+        ))}
+    </Form.Select>
+)

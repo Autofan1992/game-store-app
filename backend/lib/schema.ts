@@ -16,6 +16,8 @@ import '../src/queries/game/GameConnection'
 
 // mutations
 import '../src/mutations/game/CreateGame'
+import '../src/mutations/game/PatchGame'
+import '../src/mutations/comment/CreateComment'
 
 const schema = builder.toSchema({})
 

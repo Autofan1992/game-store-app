@@ -8,7 +8,7 @@ const GameConnectionResponseRef = builder.objectType(ConnectionResponse<Game>, {
     fields: (t) => ({
         nodes: t.expose('nodes', { type: [GameRef] }),
         hasMore: t.exposeBoolean('hasMore'),
-        totalCount: t.exposeInt('totalCount'),
+        totalCount: t.exposeInt('totalCount')
     })
 })
 

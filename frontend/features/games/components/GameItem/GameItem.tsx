@@ -9,13 +9,20 @@ import { Button, Card } from 'react-bootstrap'
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hooks'
 import { selectCartItemQuantity } from '../../../../redux/selectors/cartSelectors'
-import { decreaseCartItemQuantity, increaseCartItemQuantity, removeCartItem } from '../../../../redux/slices/cartSlice'
+import {
+    decreaseCartItemQuantity,
+    increaseCartItemQuantity,
+    removeCartItem,
+} from '../../../../redux/slices/cartSlice'
 import { GameCardType, GamePlatformType } from '../../../../types/gameCardTypes'
 import { formatCurrency } from '../../../../utils/formatCurrency'
 
-const RatingWrapper = dynamic(() => import('../../../../features/games/components/Rating/RatingWrapper'), {
-    ssr: false,
-})
+const RatingWrapper = dynamic(
+    () => import('../../../../features/games/components/Rating/RatingWrapper'),
+    {
+        ssr: false,
+    },
+)
 
 const defaultImage = 'https://via.placeholder.com/460x460?text=no-image'
 

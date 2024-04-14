@@ -6,7 +6,7 @@ import gamesReducer from './slices/gamesSlice'
 const store = configureStore({
     reducer: {
         gamesPage: gamesReducer,
-        cart: cartReducer
+        cart: cartReducer,
     },
 })
 

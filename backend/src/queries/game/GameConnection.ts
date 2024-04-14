@@ -5,11 +5,11 @@ import prisma from '../../../lib/prisma'
 import GameConnectionInputRef from '../../refs/game/GameConnectionInput'
 import { GamePlatform } from '@prisma/client'
 
-builder.queryField('gameConnection', t =>
+builder.queryField('gameConnection', (t) =>
     t.field({
         type: GameConnectionResponseRef,
         args: {
-            input: t.arg({ type: GameConnectionInputRef }),
+            input: t.arg({ type: GameConnectionInputRef })
         },
         resolve: async (query, { input }) => {
             const { where, pagination } = input || {}
@@ -19,7 +19,7 @@ builder.queryField('gameConnection', t =>
             const nodes = await prisma.game.findMany({
                 ...query,
                 orderBy: {
-                    [where?.sortCriteria || 'createdAt']: where?.orderBy,
+                    [where?.sortCriteria || 'createdAt']: where?.orderBy
                 },
                 where: {
                     AND: [
@@ -36,21 +36,29 @@ builder.queryField('gameConnection', t =>
                         },
                         {
                             platform: {
-                                hasSome: where?.platforms ?? Object.values(GamePlatform)
+                                hasSome:
+                                    where?.platforms ??
+                                    Object.values(GamePlatform)
+                            }
+                        },
+                        {
+                            name: {
+                                contains: where?.name ?? undefined,
+                                mode: 'insensitive'
                             }
                         }
                     ]
                 },
                 skip,
-                take,
+                take
             })
             const hasMore = totalCount > skip + take
 
             return {
                 nodes,
                 totalCount,
-                hasMore,
+                hasMore
             }
-        },
+        }
     })
 )
