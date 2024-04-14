@@ -5,17 +5,17 @@ builder.prismaObject('User', {
     fields: (t) => ({
         id: t.exposeID('id'),
         createdAt: t.expose('createdAt', {
-            type: 'Date',
+            type: 'Date'
         }),
         updatedAt: t.expose('updatedAt', {
-            type: 'Date',
+            type: 'Date'
         }),
         avatar: t.exposeString('avatar', { nullable: true }),
         email: t.exposeString('email'),
         role: t.expose('role', {
-            type: UserRoleRef,
-        }),
-    }),
+            type: UserRoleRef
+        })
+    })
 })
 
 const UserRoleRef = builder.enumType('UserRole', {

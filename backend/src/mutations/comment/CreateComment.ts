@@ -1,0 +1,35 @@
+import builder from '../../../lib/builder'
+import prisma from '../../../lib/prisma'
+import { GraphQLError } from 'graphql/error'
+import CreateCommentInputRef from '../../refs/comment/CreateCommentInput'
+
+builder.mutationField('createComment', (t) =>
+    t.prismaField({
+        args: {
+            input: t.arg({ type: CreateCommentInputRef, required: true })
+        },
+        type: 'Comment',
+        resolve: async (query, _, { input: { gameId, text } }, ctx) => {
+            const { user } = await ctx
+
+            if (!user) throw new GraphQLError('Unauthenticated')
+
+            return prisma.comment.create({
+                ...query,
+                data: {
+                    user: {
+                        connect: {
+                            id: user.id
+                        }
+                    },
+                    game: {
+                        connect: {
+                            id: gameId
+                        }
+                    },
+                    text
+                }
+            })
+        }
+    })
+)

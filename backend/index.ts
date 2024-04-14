@@ -3,11 +3,13 @@ import { createServer } from 'node:http'
 import schema from './lib/schema'
 import { createContext } from './src/context/context'
 
-
 const yoga = createYoga({
     schema: schema,
     context: createContext,
-    graphqlEndpoint: '/graphql'
+    graphqlEndpoint: '/graphql',
+    graphiql: {
+        headers: JSON.stringify({ Authorization: 'Bearer ' })
+    }
 })
 
 const server = createServer(yoga)

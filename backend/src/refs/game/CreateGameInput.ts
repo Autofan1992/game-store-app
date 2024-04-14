@@ -10,8 +10,8 @@ const CreateGameInputRef = builder.inputType('CreateGameInput', {
         genre: t.string({ required: true }),
         name: t.string({ required: true }),
         amount: t.int({ required: true }),
-        imageId: t.string({ required: true }),
-    }),
+        imageId: t.string({ required: true })
+    })
 })
 
 export default CreateGameInputRef

@@ -1,4 +1,4 @@
- class ConnectionResponse<T> {
+class ConnectionResponse<T> {
     totalCount: number
     hasMore: boolean
     nodes: T[]
@@ -10,4 +10,4 @@
     }
 }
 
- export default ConnectionResponse
+export default ConnectionResponse

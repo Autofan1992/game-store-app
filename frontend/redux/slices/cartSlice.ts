@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { loadStripe } from '@stripe/stripe-js'
 
 import { CartItemType } from '../../features/cart/types/cartTypes'
 import { GameCardType } from '../../types/gameCardTypes'
@@ -18,14 +17,14 @@ export const onCheckout = createAsyncThunk<void, undefined, { state: RootStateTy
             cart: { items },
         } = getState()
 
-        try {
-            // TODO: implement stripe
-            const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_API_KEY as string)
-            items
-            stripePromise
-        } catch (e) {
-            console.warn(e)
-        }
+        // try {
+        //     // TODO: implement stripe
+        //     const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_API_KEY as string)
+        //     items
+        //     stripePromise
+        // } catch (e) {
+        //     console.warn(e)
+        // }
     },
 )
 

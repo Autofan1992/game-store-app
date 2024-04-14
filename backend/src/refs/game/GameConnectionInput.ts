@@ -10,15 +10,19 @@ const GameConnectionInputRef = builder.inputType('GameConnectionInput', {
     })
 })
 
-const GameConnectionInputWhereRef = builder.inputType('GameConnectionInputWhere', {
-    fields: (t) => ({
-        genres: t.stringList(),
-        ageLimit: t.int(),
-        orderBy: t.field({ type: OrderByRef, defaultValue: OrderBy.Asc }),
-        sortCriteria: t.field({ type: GameSortCriteriaRef }),
-        platforms: t.field({ type: [GamePlatformRef] }),
-    })
-})
+const GameConnectionInputWhereRef = builder.inputType(
+    'GameConnectionInputWhere',
+    {
+        fields: (t) => ({
+            genres: t.stringList(),
+            ageLimit: t.int(),
+            orderBy: t.field({ type: OrderByRef, defaultValue: OrderBy.Asc }),
+            sortCriteria: t.field({ type: GameSortCriteriaRef }),
+            platforms: t.field({ type: [GamePlatformRef] }),
+            name: t.string()
+        })
+    }
+)
 
 enum GameSortCriteria {
     Name = 'name',

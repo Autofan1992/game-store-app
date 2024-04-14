@@ -10,8 +10,7 @@ const gamesToCreate = [
         platform: [GamePlatform.Pc],
         description: 'Fullstack React framework 5',
         genre: 'Action',
-        name: 'Spider man',
-
+        name: 'Spider man'
     },
     {
         ageLimit: 12,
@@ -19,7 +18,7 @@ const gamesToCreate = [
         platform: [GamePlatform.Playstation],
         description: 'Fullstack React framework 5',
         genre: 'Action',
-        name: 'Spider man 2',
+        name: 'Spider man 2'
     }
 ]
 
@@ -27,17 +26,17 @@ const resourcesToCreate = [
     {
         name: 'random image',
         url: 'https://source.unsplash.com/random',
-        mimeType: 'image/png',
+        mimeType: 'image/png'
     },
     {
         name: 'random image',
         url: 'https://source.unsplash.com/random',
-        mimeType: 'image/png',
+        mimeType: 'image/png'
     },
     {
         name: 'random image',
         url: 'https://source.unsplash.com/random',
-        mimeType: 'image/png',
+        mimeType: 'image/png'
     }
 ]
 
@@ -47,7 +46,7 @@ async function main() {
     await prisma.user.create({
         data: {
             email: 'test@test.com',
-            role: UserRole.Admin,
+            role: UserRole.Admin
         }
     })
 
@@ -64,17 +63,18 @@ async function main() {
     const user = await prisma.user.findFirstOrThrow()
 
     await prisma.$transaction(
-        gamesToCreate.map((game, idx) => prisma.game.createMany({
+        gamesToCreate.map((game, idx) =>
+            prisma.game.createMany({
                 data: {
                     ...game,
                     resourceId: resources[idx].id,
                     userId: user.id
                 }
             })
-        ))
+        )
+    )
 
     console.log('✅ Seeded games')
-
 }
 
 main()
@@ -86,4 +86,3 @@ main()
         console.error(e)
         process.exit(1)
     })
-

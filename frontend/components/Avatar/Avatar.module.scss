@@ -1,13 +1,13 @@
 .avatar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  color: #ffffff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: #ffffff;
 
-  &.withBg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #808080;
-  }
+    &.withBg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #808080;
+    }
 }
