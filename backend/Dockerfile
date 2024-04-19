@@ -15,7 +15,6 @@ CMD ["node", "dist/index.js"]
 
 FROM nginx:mainline-alpine3.18 AS deploy
 
-COPY --from=build /app/dist /usr/share/nginx/server/
 RUN rm -rf /etc/nginx/conf.d/*
 COPY nginx.conf /etc/nginx/conf.d/
 
