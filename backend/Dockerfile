@@ -12,10 +12,3 @@ FROM base AS build
 RUN yarn db:generate && yarn build
 
 CMD ["node", "dist/index.js"]
-
-FROM nginx:mainline-alpine3.18 AS deploy
-
-RUN rm -rf /etc/nginx/conf.d/*
-COPY nginx.conf /etc/nginx/conf.d/
-
-CMD ["nginx","-g","daemon off;"]
