@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/.eslintignore" afterDir="false" />
+    <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="fix build">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/check.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/check.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +65,15 @@
       <workItem from="1713107123004" duration="907000" />
       <workItem from="1713516909654" duration="1487000" />
     </task>
+    <task id="LOCAL-00001" summary="fix build">
+      <option name="closed" value="true" />
+      <created>1713525371996</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713525371996</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -72,5 +81,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix build" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix build" />
   </component>
 </project>
