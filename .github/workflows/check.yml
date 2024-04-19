@@ -5,16 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - uses: adambirds/docker-compose-action@v1.3.0
-        with:
-          compose-file: "./backend/docker-compose.yml"
-        env:
-          POSTGRES_PASSWORD: "root"
-          POSTGRES_USER: "admin"
-          POSTGRES_DB: "games-store-db"
-          DB_PORT: 6432
-          API_PORT: 4000
-          PGDATA: "/var/lib/postgresql/data/"
+      - run: cd backend && docker-compose up
   # fe:
   #   runs-on: self-hosted
   #   steps:
