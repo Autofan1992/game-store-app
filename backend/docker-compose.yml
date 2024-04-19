@@ -14,3 +14,10 @@ services:
             - DB_PORT=${DB_PORT}
             - PGDATA=/var/lib/postgresql/data/
         command: -p ${DB_PORT}
+
+    games-store-api:
+        build: .
+        ports:
+            - ${API_PORT}:${API_PORT}
+        depends_on:
+            - games-store-postgres
