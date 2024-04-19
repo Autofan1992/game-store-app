@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 import { Formik } from 'formik'
@@ -36,6 +37,7 @@ export type TCreateGameFormValues = typeof initialValues
 export default function CreateGamePage() {
     // const { callApi, error, isLoading } = useGetCreateGame()
 
+    // @ts-ignore
     const onSubmit = async (values, actions) => {
         // await callApi(values)
         actions.resetForm()

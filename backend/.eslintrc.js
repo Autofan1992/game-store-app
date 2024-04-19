@@ -8,8 +8,14 @@ module.exports = {
         sourceType: 'module',
         ecmaVersion: 2020
     },
-    extends: ['eslint:recommended'],
+    plugins: ['@typescript-eslint'],
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended'
+    ],
     rules: {
+        'no-unused-vars': 'off',
         'no-undef': 'off'
     }
 }

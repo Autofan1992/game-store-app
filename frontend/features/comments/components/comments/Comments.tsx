@@ -15,7 +15,7 @@ export default function Comments({ comments }: ICommentsProps) {
             </Card.Header>
             <Card.Body>
                 <div className='gap-1 d-grid'>
-                    {comments.map((comment) => (
+                    {comments?.map((comment) => (
                         <CommentItem key={comment.id} {...comment} />
                     ))}
                 </div>

@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/check.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/api/auth/[auth0]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/api/auth/[auth0]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/codegen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/codegen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/appContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/appContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/comments/components/comments/Comments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/comments/components/comments/Comments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/reportWebVitals.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/userInitials.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/userInitials.utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,20 +47,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/pet-projects/game-store-app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "C:/pet-projects/game-store-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\pet-projects\game-store-app" />
@@ -69,5 +84,8 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

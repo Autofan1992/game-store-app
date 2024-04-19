@@ -81,6 +81,7 @@ export type GameConnectionInput = {
 export type GameConnectionInputWhere = {
   ageLimit?: InputMaybe<Scalars['Int']['input']>;
   genres?: InputMaybe<Array<Scalars['String']['input']>>;
+  name?: InputMaybe<Scalars['String']['input']>;
   orderBy?: InputMaybe<OrderBy>;
   platforms?: InputMaybe<Array<GamePlatform>>;
   sortCriteria?: InputMaybe<GameSortCriteria>;
