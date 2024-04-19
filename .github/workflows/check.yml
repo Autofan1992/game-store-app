@@ -12,14 +12,14 @@ jobs:
   be:
     runs-on: self-hosted
     steps:
-      - run: mv -f backend/* backend && cd backend
+      - run: cd backend
       - run: yarn
       - run: yarn lint
       - run: yarn build
   fe:
     runs-on: self-hosted
     steps:
-      - run: mv -f frontend/* frontend && cd frontend
+      - run: cd frontend
       - run: yarn
       - run: yarn lint
       - run: yarn build
