@@ -5,7 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - uses: hoverkraft-tech/compose-action@v1.5.1
+      - uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: "./backend/docker-compose.yml"
         env:
