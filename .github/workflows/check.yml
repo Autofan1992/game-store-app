@@ -1,27 +1,25 @@
 name: Check
 on: pull_request
 jobs:
-  be:
+  base:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-      - run: mv -f backend/* .
       - uses: actions/setup-node@v3
         with:
           node-version: 20
       - run: npm install -g yarn
+  be:
+    runs-on: self-hosted
+    steps:
+      - run: cd backend
       - run: yarn
       - run: yarn lint
       - run: yarn build
   fe:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-      - run: mv -f frontend/* .
-      - run: npm install -g yarn
+      - run: cd frontend
       - run: yarn
       - run: yarn lint
       - run: yarn build
