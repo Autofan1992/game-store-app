@@ -9,19 +9,17 @@ jobs:
         with:
           node-version: 20
       - run: npm install -g yarn
-      - run: mv -f frontend/* frontend
-      - run: mv -f backend/* backend
   be:
     runs-on: self-hosted
     steps:
-      - run: cd backend
+      - run: mv -f backend/* backend && cd backend
       - run: yarn
       - run: yarn lint
       - run: yarn build
   fe:
     runs-on: self-hosted
     steps:
-      - run: cd frontend
+      - run: mv -f frontend/* frontend && cd frontend
       - run: yarn
       - run: yarn lint
       - run: yarn build
