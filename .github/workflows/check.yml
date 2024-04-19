@@ -8,6 +8,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm i -g yarn
       - run: cd backend && yarn
       - run: cd backend && yarn lint
       - run: cd backend && yarn build
@@ -18,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm i -g yarn
       - run: cd frontend && yarn
       - run: cd frontend && yarn lint
       - run: cd frontend && yarn build
