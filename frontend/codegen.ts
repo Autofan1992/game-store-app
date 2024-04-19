@@ -5,7 +5,7 @@ const config: CodegenConfig = {
     documents: './**/*.graphql',
     generates: {
         'graphql-generated/types.ts': { plugins: ['typescript'] },
-        '/': {
+        './': {
             preset: 'near-operation-file',
             presetConfig: {
                 baseTypesPath: './graphql-generated/types.ts',

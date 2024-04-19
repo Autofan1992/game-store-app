@@ -6,7 +6,8 @@
         "db:studio": "prisma studio",
         "db:seed": "prisma db seed",
         "lint": "eslint . --ext .ts,.tsx,.graphql",
-        "lint:fix": "eslint . --ext .ts,.tsx,.graphql --fix"
+        "lint:fix": "eslint . --ext .ts,.tsx,.graphql --fix",
+        "build": "tsc"
     },
     "devDependencies": {
         "@types/node": "^20.11.25",

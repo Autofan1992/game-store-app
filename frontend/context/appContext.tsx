@@ -26,12 +26,12 @@ export const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) =>
     const [toastMessage, setToastMessage] = useState<string | null>(null)
 
     useEffect(() => {
-        const handleResize = () => setAppWindowWidth(window.innerWidth)
+        const handleResize = () => setAppWindowWidth(window?.innerWidth)
 
         handleResize()
 
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
+        window?.addEventListener('resize', handleResize)
+        return () => window?.removeEventListener('resize', handleResize)
     }, [])
 
     const toastShowHandle = (message: string) => {

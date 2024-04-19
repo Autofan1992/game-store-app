@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Badge, Button, Container, Nav, Navbar } from 'react-bootstrap'
 
 import { useAppContext } from '../../context/appContext'
@@ -35,6 +36,7 @@ const CartButton: FC<CartButtonProps> = ({ handleCartOffCanvasShow, cartItemsCou
 )
 
 const Header: FC = () => {
+    const pathname = usePathname()
     const dispatch = useAppDispatch()
     const { appWindowWidth: windowWidth } = useAppContext()
     const cartItemsCount = useAppSelector(selectCartItemsCount)
@@ -42,7 +44,7 @@ const Header: FC = () => {
     const user = data?.me
 
     const handleCartOffCanvasShow = () => dispatch(setShowCanvas(true))
-    const currentMenuKey = (key: string) => (window.location.pathname.search(key) >= 0 ? window.location.pathname : key)
+    const currentMenuKey = (key: string) => (pathname.search(key) >= 0 ? pathname : key)
 
     return (
         <header className={ styles.header }>
@@ -60,7 +62,7 @@ const Header: FC = () => {
                     ) }
                     <Navbar.Toggle aria-controls='basic-navbar-nav' />
                     <Navbar.Collapse id='basic-navbar-nav'>
-                        <Nav activeKey={ window.location.pathname } className='flex-grow-1 align-items-center'>
+                        <Nav activeKey={ pathname } className='flex-grow-1 align-items-center'>
                             <Nav.Link as={ Link } eventKey='/' href='/'>
                                 Home
                             </Nav.Link>

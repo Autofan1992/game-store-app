@@ -1,2 +1,3 @@
 *.js
 graphql.config.ts
+schema.graphql
