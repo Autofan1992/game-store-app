@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - uses: DerYeger/yarn-setup-action@f55be5383ea94f5eb25b20aee609af4603a68dde
+      - run: npm install -g yarn
       - run: yarn
       - run: yarn lint
       - run: yarn build
@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
       - run: mv -f frontend/* .
-      - uses: DerYeger/yarn-setup-action@f55be5383ea94f5eb25b20aee609af4603a68dde
+      - run: npm install -g yarn
       - run: yarn
       - run: yarn lint
       - run: yarn build
