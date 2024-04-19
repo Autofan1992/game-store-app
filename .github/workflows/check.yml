@@ -4,32 +4,22 @@ jobs:
   be:
     runs-on: self-hosted
     steps:
-      - name: Checkout
       - uses: actions/checkout@v3
-      - name: Install Dependencies
-      - run: mv -f backend/* .
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - uses: DerYeger/yarn-setup-action@f55be5383ea94f5eb25b20aee609af4603a68dde
-      - run: yarn
-      - name: Lint
-      - run: yarn lint
-      - name: Build
-      - run: yarn build
+      - run: npm install -g yarn
+      - run: cd backend && yarn
+      - run: cd backend && yarn lint
+      - run: cd backend && yarn build
   fe:
     runs-on: self-hosted
     steps:
-      - name: Checkout
       - uses: actions/checkout@v3
-      - name: Install Dependencies
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: mv -f frontend/* .
-      - uses: DerYeger/yarn-setup-action@f55be5383ea94f5eb25b20aee609af4603a68dde
-      - run: yarn
-      - name: Lint
-      - run: yarn lint
-      - name: Build
-      - run: yarn build
+      - run: npm install -g yarn
+      - run: cd frontend && yarn
+      - run: cd frontend && yarn lint
+      - run: cd frontend && yarn build
