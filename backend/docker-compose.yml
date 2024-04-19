@@ -4,7 +4,7 @@ services:
     games-store-postgres:
         image: postgres:latest
         ports:
-            - ${DB_PORT}:${DB_PORT}
+            - 6432:6432
         volumes:
             - /var/lib/postgresql/data/
         environment:
