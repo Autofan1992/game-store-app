@@ -3,7 +3,7 @@ RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-COPY yarn.lock /app/
+COPY yarn.lock package.json /app/
 RUN yarn
 COPY . /app/
 
