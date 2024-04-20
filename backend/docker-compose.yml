@@ -4,16 +4,16 @@ services:
     games-store-postgres:
         image: postgres:latest
         ports:
-            - 6432:6432
+            - ${DB_PORT}:${DB_PORT}
         volumes:
             - /var/lib/postgresql/data/
         environment:
-            - POSTGRES_PASSWORD=root
-            - POSTGRES_USER=admin
-            - POSTGRES_DB=games-store-db
-            - DB_PORT=6432
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_DB=${POSTGRES_DB}
+            - DB_PORT=${DB_PORT}
             - PGDATA=/var/lib/postgresql/data/
-        command: -p 6432
+        command: -p ${DB_PORT}
 
     nginx:
         restart: always
@@ -24,6 +24,7 @@ services:
     games-store-api:
         build: .
         ports:
-            - 4000:4000
+            - ${API_PORT}:${API_PORT}
         depends_on:
             - games-store-postgres
+            - nginx
