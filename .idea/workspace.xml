@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.eslintignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/api/auth/[auth0]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/api/auth/[auth0]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/codegen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/codegen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/context/appContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/appContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/features/comments/components/comments/Comments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/comments/components/comments/Comments.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/reportWebVitals.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/userInitials.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/userInitials.utils.ts" afterDir="false" />
+    <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="fix build">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/check.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/check.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +36,14 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "fix-build",
     "last_opened_file_path": "C:/pet-projects/game-store-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "C:\\pet-projects\\game-store-app\\backend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,7 +64,25 @@
       <workItem from="1713106086499" duration="699000" />
       <workItem from="1713107123004" duration="907000" />
       <workItem from="1713516909654" duration="1487000" />
+      <workItem from="1713535217951" duration="2072000" />
     </task>
+    <task id="LOCAL-00001" summary="fix build">
+      <option name="closed" value="true" />
+      <created>1713525371996</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713525371996</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix build">
+      <option name="closed" value="true" />
+      <created>1713526333046</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713526333046</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +90,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix build" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix build" />
   </component>
 </project>

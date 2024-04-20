@@ -3,6 +3,7 @@ version: '3.9'
 services:
     games-store-postgres:
         image: postgres:latest
+        restart: always
         ports:
             - ${DB_PORT}:${DB_PORT}
         volumes:
@@ -14,3 +15,24 @@ services:
             - DB_PORT=${DB_PORT}
             - PGDATA=/var/lib/postgresql/data/
         command: -p ${DB_PORT}
+
+    nginx:
+        restart: always
+        build: ./nginx
+        ports:
+            - "80:80"
+
+    games-store-api:
+        build: .
+        ports:
+            - ${API_PORT}:${API_PORT}
+            - "5555:5555"
+        environment:
+            - API_PORT=${API_PORT}
+            - DATABASE_URL=${DATABASE_URL}
+            - AUTH0_ISSUER_BASE_URL=${AUTH0_ISSUER_BASE_URL}
+            - APP_AWS_ACCESS_KEY=${APP_AWS_ACCESS_KEY}
+            - APP_AWS_SECRET_KEY=${APP_AWS_SECRET_KEY}
+        depends_on:
+            - games-store-postgres
+            - nginx
