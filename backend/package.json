@@ -1,10 +1,12 @@
 {
     "scripts": {
+        "start": "concurrently \"node dist/index.js\" \"prisma studio\"",
         "dev": "ts-node-dev --exit-child --respawn index.ts",
         "db:generate": "prisma generate",
         "db:migrate": "prisma migrate dev",
         "db:studio": "prisma studio",
         "db:seed": "prisma db seed",
+        "db:migrate:deploy": "prisma migrate deploy",
         "lint": "eslint . --ext .ts,.tsx,.graphql",
         "lint:fix": "eslint . --ext .ts,.tsx,.graphql --fix",
         "build": "tsc"
@@ -13,6 +15,7 @@
         "@types/node": "^20.11.25",
         "@typescript-eslint/eslint-plugin": "^5.57.0",
         "@typescript-eslint/parser": "^5.57.0",
+        "concurrently": "^8.2.2",
         "eslint": "^8.57.0",
         "graphql-scalars": "^1.22.5",
         "prettier": "^3.2.5",
