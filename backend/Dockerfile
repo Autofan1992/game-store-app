@@ -9,6 +9,5 @@ COPY . /app/
 
 FROM base AS build
 
-RUN yarn db:generate && yarn build
-
-CMD ["node", "dist/index.js"]
+RUN chmod +x /scripts/startup.sh
+CMD ["./startup.sh"]
