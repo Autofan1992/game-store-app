@@ -1,3 +1,9 @@
 #!/bin/bash
 
-yarn db:generate && yarn db:migrate && yarn db:seed && yarn db:studio && yarn build && node dist/index.js
+npm run db:generate
+npm run db:migrate:deploy
+npm run build
+
+npm run start
+
+
