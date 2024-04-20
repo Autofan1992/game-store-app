@@ -3,6 +3,7 @@ version: '3.9'
 services:
     games-store-postgres:
         image: postgres:latest
+        restart: always
         ports:
             - ${DB_PORT}:${DB_PORT}
         volumes:
@@ -13,7 +14,6 @@ services:
             - POSTGRES_DB=${POSTGRES_DB}
             - DB_PORT=${DB_PORT}
             - PGDATA=/var/lib/postgresql/data/
-        command: -p ${DB_PORT}
 
     nginx:
         restart: always
@@ -34,4 +34,3 @@ services:
         depends_on:
             - games-store-postgres
             - nginx
-        command: node -e 'console.log(process.env);'
