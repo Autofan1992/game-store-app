@@ -9,5 +9,5 @@ COPY . /app/
 
 FROM base AS build
 
-RUN chmod +x /scripts/startup.sh
+RUN chmod +x ./startup.sh
 CMD ["./startup.sh"]
