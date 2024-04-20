@@ -34,3 +34,4 @@ services:
         depends_on:
             - games-store-postgres
             - nginx
+        command: node -e 'console.log(process.env);'
