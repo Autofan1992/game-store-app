@@ -5,7 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - run: cd backend && docker-compose up --build
+      - run: cd backend && docker-compose build
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
@@ -16,6 +16,7 @@ jobs:
           AUTH0_ISSUER_BASE_URL: ${{ secrets.AUTH0_ISSUER_BASE_URL }}
           APP_AWS_ACCESS_KEY: ${{ secrets.APP_AWS_ACCESS_KEY }}
           APP_AWS_SECRET_KEY: ${{ secrets.APP_AWS_SECRET_KEY }}
+      - run: cd backend && docker-compose up -d
   # fe:
   #   runs-on: self-hosted
   #   steps:
