@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get install -y openssl
 WORKDIR /app
 
 COPY yarn.lock package.json /app/
-RUN yarn
+RUN yarn --frozen-lockfile
 COPY . /app/
 
 FROM base AS build
