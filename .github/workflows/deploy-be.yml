@@ -1,0 +1,25 @@
+name: Deploy Backend
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'backend/**'
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    env:
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_STUDIO_PORT: ${{ secrets.DB_STUDIO_PORT }}
+      API_PORT: ${{ secrets.API_PORT }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      AUTH0_ISSUER_BASE_URL: ${{ secrets.AUTH0_ISSUER_BASE_URL }}
+      APP_AWS_ACCESS_KEY: ${{ secrets.APP_AWS_ACCESS_KEY }}
+      APP_AWS_SECRET_KEY: ${{ secrets.APP_AWS_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: cd backend && docker-compose build
+      - run: cd backend && docker-compose up -d

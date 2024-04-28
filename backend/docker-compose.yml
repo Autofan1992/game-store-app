@@ -15,24 +15,35 @@ services:
             - DB_PORT=${DB_PORT}
             - PGDATA=/var/lib/postgresql/data/
         command: -p ${DB_PORT}
+        networks:
+            - games-store
 
     nginx:
         restart: always
         build: ./nginx
         ports:
             - "80:80"
+        networks:
+            - games-store
 
     games-store-api:
         build: .
         ports:
             - ${API_PORT}:${API_PORT}
-            - "5555:5555"
+            - ${DB_STUDIO_PORT}:${DB_STUDIO_PORT}
         environment:
             - API_PORT=${API_PORT}
             - DATABASE_URL=${DATABASE_URL}
             - AUTH0_ISSUER_BASE_URL=${AUTH0_ISSUER_BASE_URL}
             - APP_AWS_ACCESS_KEY=${APP_AWS_ACCESS_KEY}
             - APP_AWS_SECRET_KEY=${APP_AWS_SECRET_KEY}
+            - DB_STUDIO_PORT=${DB_STUDIO_PORT}
         depends_on:
             - games-store-postgres
             - nginx
+        networks:
+            - games-store
+
+networks:
+    games-store:
+        driver: bridge
