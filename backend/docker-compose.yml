@@ -16,7 +16,7 @@ services:
             - PGDATA=/var/lib/postgresql/data/
         command: -p ${DB_PORT}
         networks:
-            - frontend_some-net
+            - games-store
 
     nginx:
         restart: always
@@ -24,7 +24,7 @@ services:
         ports:
             - "80:80"
         networks:
-            - frontend_some-net
+            - games-store
 
     games-store-api:
         build: .
@@ -42,7 +42,8 @@ services:
             - games-store-postgres
             - nginx
         networks:
-            - frontend_some-net
+            - games-store
+
 networks:
-    frontend_some-net:
-        external: true
+    games-store:
+        driver: bridge

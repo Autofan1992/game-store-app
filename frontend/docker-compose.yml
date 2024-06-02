@@ -14,8 +14,8 @@ services:
             - AUTH0_HOOK_SECRET=${AUTH0_HOOK_SECRET}
             - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
         networks:
-            - some-net
+            - backend_games-store
 
 networks:
-    some-net:
-        driver: bridge
+    backend_games-store:
+        external: true

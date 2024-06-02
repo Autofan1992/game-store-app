@@ -1,8 +1,10 @@
-name: Deploy
+name: Deploy Backend
 on:
   push:
     branches:
       - develop
+    paths:
+      - 'backend/**'
 jobs:
   build-and-deploy:
     runs-on: self-hosted
