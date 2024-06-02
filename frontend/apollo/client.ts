@@ -3,7 +3,7 @@ import { setContext } from '@apollo/client/link/context'
 import { createUploadLink } from 'apollo-upload-client'
 
 const getAuthLink = setContext(async (_, { headers }) => {
-    const response = await fetch('http://localhost:3000/api/auth/token')
+    const response = await fetch('/auth/token')
     const { accessToken } = await response.json()
 
     return {

@@ -1,13 +1,15 @@
 import { Card } from 'react-bootstrap'
 
-import { IComment } from '../../../../types/gameCardTypes'
+import { CommentFragment } from '../../graphql/fragments/Comment.generated'
 import CommentItem from '../comment-item/CommentItem'
 
 interface ICommentsProps {
-    comments?: IComment[]
+    comments?: CommentFragment[]
 }
 
 export default function Comments({ comments }: ICommentsProps) {
+    if (!comments?.length) return null
+
     return (
         <Card className='mt-3'>
             <Card.Header>

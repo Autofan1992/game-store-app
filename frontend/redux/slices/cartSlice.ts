@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { CartItemType } from '../../features/cart/types/cartTypes'
-import { GameCardType } from '../../types/gameCardTypes'
+import { GameFragment } from '../../features/games/graphql/queries/GamesForHomePage.generated'
 import { RootStateType } from '../store'
 
 const initialState = {
@@ -16,6 +16,7 @@ export const onCheckout = createAsyncThunk<void, undefined, { state: RootStateTy
         const {
             cart: { items },
         } = getState()
+        items
 
         // try {
         //     // TODO: implement stripe
@@ -35,16 +36,16 @@ const cartSlice = createSlice({
         setShowCanvas(state, { payload }: PayloadAction<boolean>) {
             state.showOffCanvas = payload
         },
-        increaseCartItemQuantity(state, { payload }: PayloadAction<GameCardType | number>) {
-            const item = state.items.find((item) => item.id === payload)
+        increaseCartItemQuantity(state, { payload }: PayloadAction<GameFragment>) {
+            const item = state.items.find((item) => item.id === payload.id)
 
             if (item) {
                 item.quantity += 1
             } else {
-                state.items.push({ ...(payload as GameCardType), quantity: 1 })
+                state.items.push({ ...(payload), quantity: 1 })
             }
         },
-        decreaseCartItemQuantity(state, { payload }: PayloadAction<number>) {
+        decreaseCartItemQuantity(state, { payload }: PayloadAction<string>) {
             const item = state.items.find((item) => item.id === payload)
 
             if (item && item.quantity > 1) {
@@ -53,7 +54,7 @@ const cartSlice = createSlice({
                 state.items = state.items.filter((item) => item.id !== payload)
             }
         },
-        removeCartItem(state, { payload }: PayloadAction<number>) {
+        removeCartItem(state, { payload }: PayloadAction<string>) {
             state.items = state.items.filter((item) => item.id !== payload)
         },
     },

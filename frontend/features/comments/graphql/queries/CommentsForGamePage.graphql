@@ -1,0 +1,9 @@
+query CommentsForGamePage($input: CommentConnectionInput!) {
+    commentConnection(input: $input) {
+        hasMore
+        totalCount
+        nodes {
+            ...Comment
+        }
+    }
+}

@@ -13,11 +13,15 @@ import '../src/refs/resource/Resource'
 import '../src/queries/user/Me'
 import '../src/queries/game/Game'
 import '../src/queries/game/GameConnection'
+import '../src/queries/comment/CommentConnection'
 
 // mutations
 import '../src/mutations/game/CreateGame'
 import '../src/mutations/game/PatchGame'
 import '../src/mutations/comment/CreateComment'
+import '../src/mutations/comment/PatchComment'
+import '../src/mutations/comment/DeleteComment'
+import '../src/mutations/resource/UploadResource'
 
 const schema = builder.toSchema({})
 

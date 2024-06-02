@@ -1,35 +1,36 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .app-wrapper {
-    background: url('https://i.playground.ru/p/JMFyJFYzyIN-RdKastTQEQ.jpeg') fixed no-repeat center /
-        cover;
+  position: relative;
+  background: url("../assets/games_of_201.jpg") fixed center;
+
+  &.full-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+  }
+
+  .rounded-styled-block {
+    padding: 30px;
+    background-color: rgba(16, 15, 16, 0.7);
+    border-radius: 30px;
+  }
+
+  .app-content {
     position: relative;
-
-    &.full-screen {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .rounded-styled-block {
-        padding: 30px;
-        background-color: rgba(16, 15, 16, 0.7);
-        border-radius: 30px;
-    }
-
-    .app-content {
-        position: relative;
-    }
+    z-index: 2;
+  }
 }

@@ -1,0 +1,26 @@
+fragment Game on Game {
+    id
+    name
+    ageLimit
+    description
+    isLiked
+    genre
+    aggregate {
+        ...GameAggregate
+    }
+    price
+    platform
+    image {
+        ...GameImage
+    }
+}
+
+fragment GameAggregate on GameAggregate {
+    rating
+    likes
+}
+
+fragment GameImage on Resource {
+    id
+    url
+}

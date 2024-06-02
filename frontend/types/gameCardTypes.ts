@@ -11,7 +11,7 @@ interface ICommentAuthor {
 }
 
 export type GameCardType = {
-    id: number
+    id: string
     name: string
     image: string
     price: number

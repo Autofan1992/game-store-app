@@ -5,12 +5,14 @@ import { Row } from 'react-bootstrap'
 import Feedback from 'react-bootstrap/Feedback'
 
 type TInputWithLabelProps<T> = PropsWithChildren & {
+    label: string
     error?: string | string[] | FormikErrors<T> | FormikErrors<T>[]
 }
 
-function InputWithLabel<T>({ error, children }: TInputWithLabelProps<T>) {
+function InputWithLabel<T>({ label, error, children }: TInputWithLabelProps<T>) {
     return (
         <label className='d-block'>
+            <span className='d-block mb-1'>{label}</span>
             {children}
             {error &&
                 (Array.isArray(error) ? (

@@ -7,7 +7,7 @@ export const selectShowCartOffCanvas = (state: RootStateType) => state.cart.show
 export const selectCartIsFetching = (state: RootStateType) => state.cart.isFetching
 
 export const selectCartItemQuantity = createSelector(
-    [selectCartItems, (state: RootStateType, id: number) => id],
+    [selectCartItems, (state: RootStateType, id: string) => id],
     (items, id) => {
         const item = items.find((item) => item.id === id)
 
@@ -16,7 +16,7 @@ export const selectCartItemQuantity = createSelector(
 )
 
 export const selectCartItemTotalPrice = createSelector(
-    [selectCartItems, (state: RootStateType, id: number) => id],
+    [selectCartItems, (state: RootStateType, id: string) => id],
     (items, id) => {
         const item = items.find((item) => item.id === id)
 

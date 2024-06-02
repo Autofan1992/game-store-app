@@ -2,7 +2,7 @@ import { GameCardType, GamePlatformType } from '../../types/gameCardTypes'
 
 const gamesData: Array<GameCardType & GamePlatformType> = [
     {
-        id: 222221,
+        id: '222221',
         name: 'Overwatch345',
         ageLimit: 12,
         rating: 5,
@@ -26,7 +26,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
         ],
     },
     {
-        id: 1,
+        id: '1',
         name: 'Overwatch',
         ageLimit: 12,
         rating: 5,
@@ -41,7 +41,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 2,
+        id: '2',
         name: 'Minecraft',
         ageLimit: 3,
         rating: 4,
@@ -56,7 +56,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 3,
+        id: '3',
         name: 'Terraria',
         ageLimit: 6,
         rating: 4,
@@ -71,7 +71,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 4,
+        id: '4',
         name: 'The Witcher 3: Wild Hunt',
         ageLimit: 16,
         rating: 5,
@@ -86,7 +86,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 5,
+        id: '5',
         name: "Assassin's Creed Valhalla",
         ageLimit: 18,
         rating: 5,
@@ -101,7 +101,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 6,
+        id: '6',
         name: 'Cyberpunk 2077',
         ageLimit: 18,
         rating: 3,
@@ -116,7 +116,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 7,
+        id: '7',
         name: 'Far Cry 5',
         ageLimit: 18,
         rating: 4,
@@ -131,7 +131,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 8,
+        id: '8',
         name: 'Grand Theft Auto V',
         ageLimit: 18,
         rating: 5,
@@ -146,7 +146,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 9,
+        id:'9',
         name: 'Sims 4',
         ageLimit: 12,
         rating: 4,
@@ -161,7 +161,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 10,
+        id: '10',
         name: 'Cooking Mama: Cookstar',
         ageLimit: 3,
         rating: 4,
@@ -176,7 +176,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 11,
+        id: '11',
         name: 'DOOM 3',
         ageLimit: 16,
         rating: 5,
@@ -191,7 +191,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 12,
+        id: '12',
         name: 'Epic Shef',
         ageLimit: 12,
         rating: 4,
@@ -206,7 +206,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 13,
+        id: '13',
         name: 'Life is Strange: Before the storm',
         ageLimit: 16,
         rating: 4,
@@ -221,7 +221,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 14,
+        id: '14',
         name: 'The Elder Scrolls V: Skyrim',
         ageLimit: 16,
         rating: 5,
@@ -236,7 +236,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 15,
+        id: '15',
         name: 'Apex Legends',
         ageLimit: 12,
         rating: 3,
@@ -251,7 +251,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 16,
+        id: '16',
         name: 'Mass Effect: Legendary Edition',
         ageLimit: 16,
         rating: 5,
@@ -266,7 +266,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 17,
+        id: '17',
         name: 'F1 2021',
         ageLimit: 6,
         rating: 4,
@@ -281,7 +281,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 18,
+        id: '18',
         name: 'Call of Duty: Modern Warfare',
         ageLimit: 18,
         rating: 2,
@@ -296,7 +296,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 19,
+        id: '19',
         name: 'Hitman',
         ageLimit: 16,
         rating: 5,
@@ -311,7 +311,7 @@ const gamesData: Array<GameCardType & GamePlatformType> = [
     },
 
     {
-        id: 20,
+        id: '20',
         name: 'Rust',
         ageLimit: 18,
         rating: 5,

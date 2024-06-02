@@ -1,0 +1,9 @@
+query GamesForHomePage($input: GameConnectionInput!) {
+    gameConnection(input: $input) {
+        totalCount
+        hasMore
+        nodes {
+            ...Game
+        }
+    }
+}

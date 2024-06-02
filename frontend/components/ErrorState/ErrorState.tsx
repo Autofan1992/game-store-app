@@ -17,7 +17,7 @@ function ErrorState({ error }: any) {
                 </Row>
             ) : (
                 <Feedback className='d-block' type='invalid'>
-                    <>{error}</>
+                    <>{error.message}</>
                 </Feedback>
             )}
         </>

@@ -1,0 +1,5 @@
+query GameForGamePage($input: GameInput!) {
+    game(input: $input) {
+        ...Game
+    }
+}
