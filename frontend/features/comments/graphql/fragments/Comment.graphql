@@ -1,0 +1,17 @@
+fragment Comment on Comment {
+    id
+    text
+    createdAt
+    updatedAt
+    isEditable
+    isEdited
+    user {
+        ...UserForComment
+    }
+}
+
+fragment  UserForComment on User {
+    id
+    avatar
+    email
+}

@@ -1,0 +1,5 @@
+mutation PatchCommentForGamePage($input: PatchCommentInput!) {
+    patchComment(input: $input) {
+        ...Comment
+    }
+}

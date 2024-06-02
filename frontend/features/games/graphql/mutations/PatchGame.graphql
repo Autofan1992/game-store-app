@@ -1,0 +1,5 @@
+mutation PatchGame($input: PatchGameInput!) {
+    patchGame(input: $input) {
+        ...Game
+    }
+}

@@ -1,16 +1,37 @@
 import builder from '../../../lib/builder'
+import { UserRole } from '@prisma/client'
 
-builder.prismaObject('Comment', {
+const CommentRef = builder.prismaObject('Comment', {
     fields: (t) => ({
         id: t.exposeID('id'),
-        createdAt: t.expose('createdAt', {
-            type: 'Date'
+        createdAt: t.field({
+            type: 'String',
+            resolve: async ({ createdAt }) => {
+                return createdAt.toISOString()
+            }
         }),
-        updatedAt: t.expose('updatedAt', {
-            type: 'Date'
+        updatedAt: t.field({
+            type: 'String',
+            resolve: async ({ updatedAt }) => {
+                return updatedAt.toISOString()
+            }
         }),
         text: t.exposeString('text'),
         game: t.relation('game'),
-        user: t.relation('user')
+        user: t.relation('user'),
+        isEditable: t.boolean({
+            resolve: async ({ userId }, _, ctx) => {
+                const user = (await ctx).user
+
+                return user ? userId === user.id || user.role === UserRole.Admin : false
+            }
+        }),
+        isEdited: t.boolean({
+            resolve: async ({ updatedAt, createdAt }) => {
+                return updatedAt.getTime() !== createdAt.getTime()
+            }
+        })
     })
 })
+
+export default CommentRef

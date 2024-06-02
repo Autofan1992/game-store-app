@@ -80,6 +80,6 @@ export const useSelectVisibleGames = () => {
     )
 }
 
-export const useSelectGame = (id: number) => {
+export const useSelectGame = (id: string) => {
     return useAppSelector(({ gamesPage: { games } }) => games.find((game) => game.id === id))
 }

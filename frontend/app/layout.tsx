@@ -19,7 +19,7 @@ export default function Layout({ children }: PropsWithChildren) {
                 <ApolloProvider client={ apolloClient }>
                     <Provider store={ store }>
                         <AppContextProvider>
-                            <UserProvider>
+                            <UserProvider  profileUrl='/auth/me'>
                                 <div className='app-wrapper text-white full-screen'>
                                     <Header />
                                     <main className='app-content'>{ children }</main>

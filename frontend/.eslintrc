@@ -1,62 +1,87 @@
 {
-    "extends": [
-        "eslint:recommended",
-        "next/core-web-vitals",
-        "plugin:react/recommended",
-        "prettier"
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false,
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
     ],
-    "plugins": ["@typescript-eslint", "react"],
-    "rules": {
-        "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": false,
-                "argsIgnorePattern": "^_",
-                "varsIgnorePattern": "^_",
-                "caughtErrorsIgnorePattern": "^_"
-            }
-        ],
-        "react/jsx-sort-props": [
-            "warn",
-            {
-                "callbacksLast": true,
-                "multiline": "last"
-            }
-        ],
-        "no-console": "warn",
-        "quotes": ["error", "single"],
-        "jsx-quotes": ["error", "prefer-single"],
-        "prefer-const": "error",
-        "indent": ["error", 4],
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 1,
-                "maxEOF": 0
-            }
-        ],
-        "semi": ["error", "never"],
-        "import/order": [
-            "error",
-            {
-                "alphabetize": {
-                    "order": "asc",
-                    "caseInsensitive": true
-                },
-                "newlines-between": "always",
-                "pathGroups": [
-                    {
-                        "pattern": "react",
-                        "group": "external",
-                        "position": "before"
-                    }
-                ],
-                "pathGroupsExcludedImportTypes": ["builtin"]
-            }
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "multiline": "last"
+      }
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
         ]
-    }
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "prefer-const": "error",
+    "indent": [
+      "error",
+      4
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0
+      }
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
+      }
+    ]
+  }
 }

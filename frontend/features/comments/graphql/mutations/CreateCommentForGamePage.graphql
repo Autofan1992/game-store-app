@@ -1,0 +1,5 @@
+mutation CreateCommentForGamePage($input: CreateCommentInput!) {
+    createComment(input: $input) {
+        ...Comment
+    }
+}

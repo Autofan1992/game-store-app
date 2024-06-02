@@ -17,7 +17,7 @@ const UserInfo = () => {
                     <p className='text-white mb-0'>{ user.email }</p>
                     <Link
                         className='inline-flex items-center bg-gray-100 border-0 px-3 focus:outline-none hover:bg-gray-200 rounded text-base md:mt-0'
-                        href='/api/auth/logout'
+                        href='/auth/logout'
                         onClick={ () => sessionStorage.clear() }
                     >
                         Logout
@@ -34,7 +34,7 @@ const UserInfo = () => {
         ) : (
             <Link
                 className='inline-flex ms-auto items-center bg-gray-100 border-0 px-3 focus:outline-none hover:bg-gray-200 rounded text-base md:mt-0'
-                href='/api/auth/login'
+                href='/auth/login'
             >
                 Login
             </Link>

@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-import { Spinner } from 'react-bootstrap'
+import Preloader from '../../components/Preloader/Preloader'
 
 export default function Loading() {
     // You can add any UI inside Loading, including a Skeleton.
-    return <Spinner />
+    return <Preloader/>
 }

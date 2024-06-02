@@ -18,13 +18,39 @@ export type Scalars = {
 
 export type Comment = {
   __typename?: 'Comment';
-  createdAt: Scalars['Date']['output'];
+  createdAt: Scalars['String']['output'];
   game: Game;
   id: Scalars['ID']['output'];
+  isEditable: Scalars['Boolean']['output'];
+  isEdited: Scalars['Boolean']['output'];
   text: Scalars['String']['output'];
-  updatedAt: Scalars['Date']['output'];
+  updatedAt: Scalars['String']['output'];
   user: User;
 };
+
+export type CommentConnectionInput = {
+  pagination?: InputMaybe<ConnectionInputPagination>;
+  where?: InputMaybe<CommentConnectionInputWhere>;
+};
+
+export type CommentConnectionInputWhere = {
+  gameId: Scalars['String']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  sortCriteria?: InputMaybe<CommentSortCriteria>;
+};
+
+export type CommentConnectionResponse = {
+  __typename?: 'CommentConnectionResponse';
+  hasMore: Scalars['Boolean']['output'];
+  nodes: Array<Comment>;
+  totalCount: Scalars['Int']['output'];
+};
+
+export enum CommentSortCriteria {
+  CreatedAt = 'createdAt',
+  Name = 'name',
+  UpdatedAt = 'updatedAt'
+}
 
 export type ConnectionInputPagination = {
   skip?: InputMaybe<Scalars['Int']['input']>;
@@ -47,6 +73,10 @@ export type CreateGameInput = {
   price: Scalars['Float']['input'];
 };
 
+export type DeleteCommentInput = {
+  id: Scalars['String']['input'];
+};
+
 export type Game = {
   __typename?: 'Game';
   ageLimit: Scalars['Int']['output'];
@@ -58,6 +88,7 @@ export type Game = {
   genre: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image: Resource;
+  isEditable: Scalars['Boolean']['output'];
   isLiked: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   platform: Array<GamePlatform>;
@@ -114,7 +145,10 @@ export type Mutation = {
   __typename?: 'Mutation';
   createComment: Comment;
   createGame: Game;
+  deleteComment: Comment;
+  patchComment: Comment;
   patchGame: Game;
+  uploadResource?: Maybe<Resource>;
 };
 
 
@@ -128,14 +162,34 @@ export type MutationCreateGameArgs = {
 };
 
 
+export type MutationDeleteCommentArgs = {
+  input: DeleteCommentInput;
+};
+
+
+export type MutationPatchCommentArgs = {
+  input: PatchCommentInput;
+};
+
+
 export type MutationPatchGameArgs = {
   input: PatchGameInput;
+};
+
+
+export type MutationUploadResourceArgs = {
+  input: UploadResourceInput;
 };
 
 export enum OrderBy {
   Asc = 'asc',
   Desc = 'desc'
 }
+
+export type PatchCommentInput = {
+  id: Scalars['String']['input'];
+  text?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type PatchGameInput = {
   ageLimit?: InputMaybe<Scalars['Int']['input']>;
@@ -152,9 +206,15 @@ export type PatchGameInput = {
 
 export type Query = {
   __typename?: 'Query';
+  commentConnection: CommentConnectionResponse;
   game?: Maybe<Game>;
   gameConnection: GameConnectionResponse;
   me?: Maybe<User>;
+};
+
+
+export type QueryCommentConnectionArgs = {
+  input?: InputMaybe<CommentConnectionInput>;
 };
 
 

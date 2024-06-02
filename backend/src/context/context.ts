@@ -1,4 +1,5 @@
 import prisma from '../../lib/prisma'
+import { GraphQLError } from 'graphql/error'
 
 export async function createContext({ request }: { request: Request }) {
     const authorization = request.headers.get('Authorization')
@@ -9,7 +10,7 @@ export async function createContext({ request }: { request: Request }) {
 
     try {
         const response = await fetch(
-            `${process.env.AUTH0_ISSUER_BASE_URL}/userinfo`,
+            `${ process.env.AUTH0_ISSUER_BASE_URL }/userinfo`,
             {
                 headers: {
                     authorization
@@ -18,7 +19,7 @@ export async function createContext({ request }: { request: Request }) {
         )
 
         if (!response.ok) {
-            return {}
+            throw response.statusText
         }
 
         const { email } = await response.json()
@@ -43,8 +44,10 @@ export async function createContext({ request }: { request: Request }) {
 
         return { user }
     } catch (e) {
-        console.warn(e)
-
-        return {}
+        if (!(e instanceof Error)) {
+            // eslint-disable-next-line no-ex-assign
+            e = new Error(e as string)
+        }
+        throw new GraphQLError((e as Error).message)
     }
 }

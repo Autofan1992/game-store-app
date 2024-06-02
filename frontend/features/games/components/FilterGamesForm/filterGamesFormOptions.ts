@@ -1,8 +1,7 @@
+import { GamePlatform, GameSortCriteria, OrderBy } from '../../../../graphql-generated/types'
 import {
     AgesLimit,
-    GamesPlatforms,
-    GamesSortCriteria,
-    SortTypes,
+
 } from '../../../../types/gameCardTypes'
 
 export const ageLimitOptions = [
@@ -34,19 +33,19 @@ export const ageLimitOptions = [
 
 export const gamePlatformsOptions = [
     {
-        value: GamesPlatforms.All,
+        value: undefined,
         label: 'All platforms',
     },
     {
-        value: GamesPlatforms.Pc,
+        value: GamePlatform.Pc,
         label: 'Pc',
     },
     {
-        value: GamesPlatforms.Xbox,
+        value: GamePlatform.Xbox,
         label: 'Xbox',
     },
     {
-        value: GamesPlatforms.Playstation,
+        value: GamePlatform.Playstation,
         label: 'Playstation',
     },
 ]
@@ -57,26 +56,26 @@ export const sortCriteriaOptions = [
         label: 'Select sort criteria',
     },
     {
-        value: GamesSortCriteria.Name,
+        value: GameSortCriteria.Name,
         label: 'Name',
     },
     {
-        value: GamesSortCriteria.Rating,
+        value: GameSortCriteria.Rating,
         label: 'Rating',
     },
     {
-        value: GamesSortCriteria.Price,
+        value: GameSortCriteria.Price,
         label: 'Price',
     },
 ]
 
 export const sortTypesOptions = [
     {
-        value: SortTypes.Ascending,
+        value: OrderBy.Asc,
         label: 'Ascending',
     },
     {
-        value: SortTypes.Descending,
+        value: OrderBy.Desc,
         label: 'Descending',
     },
 ]

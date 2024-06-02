@@ -1,5 +1,5 @@
 import builder from '../../../lib/builder'
-import { GamePlatform } from '@prisma/client'
+import { GamePlatform, UserRole } from '@prisma/client'
 import GameAggregateRef from './GameAggregate'
 import prisma from '../../../lib/prisma'
 
@@ -39,6 +39,13 @@ const GameRef = builder.prismaObject('Game', {
                 })
 
                 return !!like
+            }
+        }),
+        isEditable: t.boolean({
+            resolve: async ({ userId }, _, ctx) => {
+                const user = (await ctx).user
+
+                return user ? userId === user.id || user.role === UserRole.Admin : false
             }
         }),
         aggregate: t.field({

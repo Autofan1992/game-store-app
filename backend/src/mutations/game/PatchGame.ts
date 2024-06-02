@@ -34,17 +34,11 @@ builder.mutationField('patchGame', (t) =>
 
             if (!user) throw new GraphQLError('Unauthenticated')
 
-            if (
-                price ||
-                amount ||
-                ageLimit ||
-                description ||
-                genre ||
-                name ||
-                imageId
-            ) {
-                if (user.role !== UserRole.Admin)
-                    throw new GraphQLError('Unauthorized')
+            const isUserAuthorizedToPatch =
+                like || rating || user.role === UserRole.Admin
+
+            if (!isUserAuthorizedToPatch) {
+                throw new GraphQLError('Unauthorized')
             }
 
             if (rating) {

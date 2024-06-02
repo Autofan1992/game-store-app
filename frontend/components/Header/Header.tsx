@@ -40,7 +40,7 @@ const Header: FC = () => {
     const dispatch = useAppDispatch()
     const { appWindowWidth: windowWidth } = useAppContext()
     const cartItemsCount = useAppSelector(selectCartItemsCount)
-    const { data } = useGetUser()
+    const { data,  } = useGetUser()
     const user = data?.me
 
     const handleCartOffCanvasShow = () => dispatch(setShowCanvas(true))

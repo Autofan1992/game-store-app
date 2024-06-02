@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react'
 
 import { Button, Collapse, Container } from 'react-bootstrap'
 
+import Preloader from '../../../../components/Preloader/Preloader'
 import { useAppContext } from '../../../../context/appContext'
-import { useGetIncVisibleGamesCount } from '../../../../redux/actions/games'
-import { useSelectVisibleGames, useSelectVisibleGamesCount } from '../../../../redux/selectors/gamesSelectors'
+import useGetGamesForGamesPage from '../../api-hooks/useGetGamesForGamesPage'
 import FilterGamesForm from '../FilterGamesForm/FilterGamesForm'
 import GameItem from '../GameItem/GameItem'
 import SearchGamesForm from '../SearchGamesForm/SearchGamesForm'
 
 export default function GamesContent() {
-    const gamesCount = useSelectVisibleGamesCount()
-    const games = useSelectVisibleGames()
+    const { games, loading, fetchMore, hasMore  } = useGetGamesForGamesPage()
     const { appWindowWidth } = useAppContext()
     const [open, setOpen] = useState(true)
 
@@ -21,30 +20,28 @@ export default function GamesContent() {
         if (appWindowWidth < 992) setOpen(false)
     }, [appWindowWidth])
 
-    const showMoreHandle = useGetIncVisibleGamesCount()
-
     return (
         <Container className='py-5'>
             <h1 className='text-center mb-5'>Games</h1>
-            <SearchGamesForm />
+            <SearchGamesForm/>
             <div className='row justify-content-center'>
                 <div className='col-lg-3 mb-3 mb-lg-0'>
                     <div className='filter-form rounded-styled-block'>
                         <div className='form-title'>
-                            {appWindowWidth < 992 && (
+                            { appWindowWidth < 992 && (
                                 <Button
-                                    aria-expanded={open}
+                                    aria-expanded={ open }
                                     className='w-100 mb-3'
-                                    onClick={() => setOpen(!open)}
+                                    onClick={ () => setOpen(!open) }
                                 >
                                     Show games filters
                                 </Button>
-                            )}
-                            <Collapse in={open}>
+                            ) }
+                            <Collapse in={ open }>
                                 <div>
                                     <h3>Filter Games</h3>
-                                    <hr />
-                                    <FilterGamesForm />
+                                    <hr/>
+                                    <FilterGamesForm/>
                                 </div>
                             </Collapse>
                         </div>
@@ -52,44 +49,43 @@ export default function GamesContent() {
                 </div>
                 <div className='col-lg-9'>
                     <div className='cards-row rounded-styled-block h-100'>
-                        {games.length > 0 ? (
+                        { games.length > 0 ? (
                             <div className='row g-3'>
-                                {games
-                                    .filter((_, idx) => idx < gamesCount)
+                                { games
                                     .map((game) => {
-                                        const shortDescription = `${game.description.substring(
+                                        const shortDescription = `${ game.description.substring(
                                             0,
                                             100,
-                                        )}...`
+                                        ) }...`
 
                                         return (
                                             <div
                                                 className='col-md-6 col-xl-4 text-black'
-                                                key={game.id}
+                                                key={ game.id }
                                             >
                                                 <GameItem
-                                                    {...game}
-                                                    description={shortDescription}
+                                                    { ...game }
+                                                    description={ shortDescription }
                                                     isGamesPage
                                                 />
                                             </div>
                                         )
-                                    })}
+                                    }) }
                             </div>
                         ) : (
-                            <div className='h-100 d-flex justify-content-center align-items-center'>
-                                <h2 className='fw-bold'>
+                            <div className='h-100 d-flex justify-content-center align-items-center position-relative'>
+                                { loading ? <Preloader/> : <h2 className='fw-bold'>
                                     Nothing found. Try change search criteria
-                                </h2>
+                                </h2> }
                             </div>
-                        )}
-                        {gamesCount < games.length && (
+                        ) }
+                        { hasMore && (
                             <div className='mt-3 text-center'>
-                                <Button variant='outline-primary' onClick={showMoreHandle}>
+                                <Button variant='outline-primary' onClick={ fetchMore }>
                                     Show more
                                 </Button>
                             </div>
-                        )}
+                        ) }
                     </div>
                 </div>
             </div>

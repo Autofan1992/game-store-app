@@ -1,0 +1,5 @@
+mutation DeleteCommentForGamePage($input: DeleteCommentInput!) {
+    deleteComment(input: $input) {
+        id
+    }
+}

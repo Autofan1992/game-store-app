@@ -1,5 +1,5 @@
-import { GameCardType } from '../../../types/gameCardTypes'
+import { GameFragment } from '../../games/graphql/queries/GamesForHomePage.generated'
 
-export type CartItemType = GameCardType & {
+export type CartItemType = GameFragment & {
     quantity: number
 }
