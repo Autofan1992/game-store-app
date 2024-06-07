@@ -1,11 +1,12 @@
 import prisma from '../../lib/prisma'
 import { GraphQLError } from 'graphql/error'
+import { pubsub } from '../../lib/pubsub'
 
 export async function createContext({ request }: { request: Request }) {
     const authorization = request.headers.get('Authorization')
 
     if (!authorization) {
-        return {}
+        return { pubsub }
     }
 
     try {
@@ -25,7 +26,7 @@ export async function createContext({ request }: { request: Request }) {
         const { email } = await response.json()
 
         if (!email) {
-            return {}
+            return { pubsub }
         }
 
         let user = await prisma.user.findUnique({
@@ -42,7 +43,7 @@ export async function createContext({ request }: { request: Request }) {
             })
         }
 
-        return { user }
+        return { user, pubsub }
     } catch (e) {
         if (!(e instanceof Error)) {
             // eslint-disable-next-line no-ex-assign

@@ -7,9 +7,9 @@ const yoga = createYoga({
     schema: schema,
     context: createContext,
     graphqlEndpoint: '/graphql',
-    graphiql: {
-        headers: JSON.stringify({ Authorization: 'Bearer ' })
-    }
+    // graphiql: {
+    //     headers: JSON.stringify({ Authorization: 'Bearer ' })
+    // }
 })
 
 const server = createServer(yoga)

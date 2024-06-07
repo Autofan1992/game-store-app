@@ -235,6 +235,11 @@ export type Resource = {
   url: Scalars['String']['output'];
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  commentAdded: Comment;
+};
+
 export type UploadResourceInput = {
   resource: Scalars['File']['input'];
 };
