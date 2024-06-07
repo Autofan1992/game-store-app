@@ -171,6 +171,10 @@ type Resource {
   url: String!
 }
 
+type Subscription {
+  commentAdded: Comment!
+}
+
 input UploadResourceInput {
   resource: File!
 }

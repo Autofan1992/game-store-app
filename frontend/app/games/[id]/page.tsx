@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { Col, Container, Row, Spinner } from 'react-bootstrap'
 
@@ -8,6 +10,10 @@ import Preloader from '../../../components/Preloader/Preloader'
 import useGetCommentsForGamePage from '../../../features/comments/api-hooks/useGetCommentsForGamesPage'
 import CommentForm from '../../../features/comments/components/comment-form/CommentForm'
 import Comments from '../../../features/comments/components/comments/Comments'
+import {
+    OnCommentAddedDocument,
+    OnCommentAddedSubscription
+} from '../../../features/comments/graphql/subscriptions/OnCommentAdded.generated'
 import useGetGameForGamePage from '../../../features/games/api-hooks/useGetGameForGamePage'
 import GameItem from '../../../features/games/components/GameItem/GameItem'
 
@@ -15,7 +21,22 @@ export default function GamePage({ params: { id } }: { params: { id: string } })
     const { user } = useUser()
 
     const [game, { loading: isGameLoading }] = useGetGameForGamePage(id)
-    const { comments, loading: areCommentsLoading } = useGetCommentsForGamePage(id)
+    const { comments, loading: areCommentsLoading, subscribeToMore } = useGetCommentsForGamePage(id)
+
+    useEffect(() => subscribeToMore<OnCommentAddedSubscription>({
+        document: OnCommentAddedDocument,
+        updateQuery: (prev, { subscriptionData }) => {
+            if (!subscriptionData.data) return prev
+
+            return {
+                ...prev,
+                commentConnection: {
+                    ...prev.commentConnection,
+                    nodes: [subscriptionData.data.commentAdded, ...prev.commentConnection.nodes],
+                }
+            }
+        }
+    }), [subscribeToMore])
 
     if (isGameLoading) return <Preloader/>
 
@@ -31,9 +52,9 @@ export default function GamePage({ params: { id } }: { params: { id: string } })
                 <Col lg={ 9 } md={ 10 } xl={ 7 } xxl={ 6 }>
                     <GameItem { ...game } />
 
-                    { areCommentsLoading ? <Spinner/> : <Comments comments={ comments }/> }
-
                     { !!user && <CommentForm gameId={ id }/> }
+
+                    { areCommentsLoading ? <Spinner/> : <Comments comments={ comments }/> }
                 </Col>
             </Row>
         </Container>

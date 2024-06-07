@@ -10,11 +10,11 @@ builder.mutationField('createComment', (t) =>
         },
         type: 'Comment',
         resolve: async (query, _, { input: { gameId, text } }, ctx) => {
-            const { user } = await ctx
+            const { user, pubsub } = await ctx
 
             if (!user) throw new GraphQLError('Unauthenticated')
 
-            return prisma.comment.create({
+            const comment = await prisma.comment.create({
                 ...query,
                 data: {
                     user: {
@@ -30,6 +30,12 @@ builder.mutationField('createComment', (t) =>
                     text
                 }
             })
+
+            pubsub.publish('comments', {
+                comment,
+            })
+
+            return comment
         }
     })
 )

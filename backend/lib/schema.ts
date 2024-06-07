@@ -23,6 +23,9 @@ import '../src/mutations/comment/PatchComment'
 import '../src/mutations/comment/DeleteComment'
 import '../src/mutations/resource/UploadResource'
 
+// subscriptions
+import '../src/subscriptions/comment/CommentAdded'
+
 const schema = builder.toSchema({})
 
 export default schema

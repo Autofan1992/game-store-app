@@ -1,5 +1,9 @@
+import { OperationVariables, SubscribeToMoreOptions } from '@apollo/client'
+
+import { CommentSortCriteria, OrderBy } from '../../../graphql-generated/types'
 import { CommentFragment } from '../graphql/fragments/Comment.generated'
 import {
+    CommentsForGamePageQuery,
     CommentsForGamePageQueryVariables,
     useCommentsForGamePageQuery
 } from '../graphql/queries/CommentsForGamePage.generated'
@@ -9,6 +13,7 @@ const useGetCommentsForGamePage = (gameId: string): {
     totalCount: number,
     hasMore: boolean,
     fetchMore: () => void,
+    subscribeToMore: <TSubscriptionData>(params: SubscribeToMoreOptions<CommentsForGamePageQuery, OperationVariables, TSubscriptionData>) => void,
     loading: boolean
 } => {
     const variables: CommentsForGamePageQueryVariables = {
@@ -17,7 +22,9 @@ const useGetCommentsForGamePage = (gameId: string): {
                 take: 10
             },
             where: {
-                gameId
+                gameId,
+                sortCriteria: CommentSortCriteria.UpdatedAt,
+                orderBy: OrderBy.Desc
             }
         }
     }
@@ -49,6 +56,7 @@ const useGetCommentsForGamePage = (gameId: string): {
         totalCount: query.data?.commentConnection?.totalCount || 0,
         hasMore,
         fetchMore,
+        subscribeToMore: query.subscribeToMore,
         loading: query.loading,
     }
 }
