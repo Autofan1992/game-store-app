@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma-client"
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+  output   = "../src/generated/pothos-types.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// models
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  email     String    @unique
+  avatar    String?
+  role      UserRole  @default(User)
+  comments  Comment[]
+  games     Game[]
+  likes     Like[]
+  ratings   Rating[]
+  cart      Cart?
+  orders    Order[]
+}
+
+model Game {
+  id          String         @id @default(uuid())
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  ageLimit    Int
+  price       Float
+  platforms   GamePlatform[]
+  description String
+  genre       GameGenre
+  name        String
+  amount      Int            @default(1)
+  resourceId  String
+  comments    Comment[]
+  views       Int            @default(0)
+  image       Resource       @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  likes       Like[]
+  ratings     Rating[]
+  cart        CartItem?
+  orders      OrderItem[]
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  text      String
+  gameId    String
+  userId    String
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Resource {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  url       String
+  mimeType  String
+  games     Game[]
+}
+
+model Like {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+
+  @@id([userId, gameId])
+}
+
+model Rating {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  score     Int
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  @@id([userId, gameId])
+}
+
+model Cart {
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+}
+
+model CartItem {
+  id     String @id @default(uuid())
+  cartId String @unique
+  gameId String @unique
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  game   Game   @relation(fields: [gameId], references: [id])
+  amount Int    @default(1)
+}
+
+model Order {
+  id            String                   @id @default(uuid())
+  userId        String
+  user          User                     @relation(fields: [userId], references: [id])
+  items         OrderItem[]
+  createdAt     DateTime                 @default(now())
+  status        OrderStatus              @default(Pending)
+  paymentStatus PaymentStatus            @default(Pending)
+  statusHistory OrderStatusHistoryItem[]
+}
+
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String @unique
+  gameId  String @unique
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  game    Game   @relation(fields: [gameId], references: [id])
+  amount  Int    @default(1)
+}
+
+model OrderStatusHistoryItem {
+  id        String      @id @default(uuid())
+  orderId   String      @unique
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    OrderStatus
+  changedAt DateTime    @default(now())
+}
+
+// enums
+enum UserRole {
+  User
+  Admin
+}
+
+enum GamePlatform {
+  Pc
+  Playstation
+  Xbox
+}
+
+enum GameGenre {
+  Shooter
+  Sandbox
+  RPG
+  Action
+  Simulator
+}
+
+enum OrderStatus {
+  Pending
+  Confirmed
+  Shipped
+  Delivered
+  Cancelled
+}
+
+enum PaymentStatus {
+  Pending
+  Confirmed
+  Failed
+}

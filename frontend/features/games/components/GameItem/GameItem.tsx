@@ -28,6 +28,7 @@ const RatingWrapper = dynamic(
 const defaultImage = 'https://via.placeholder.com/460x460?text=no-image'
 
 type GameItemProps = GameFragment & {
+    isShortDescription?: boolean
     isGamesPage?: boolean
 }
 
@@ -48,9 +49,10 @@ function GameItem(props: GameItemProps) {
         name,
         aggregate: { rating },
         price,
-        platform,
+        platforms,
         isGamesPage,
         isLiked,
+        isShortDescription = false,
     } = props
     const [patchGame] = usePatchGameMutation()
 
@@ -88,7 +90,7 @@ function GameItem(props: GameItemProps) {
         <Card className={ styles.gameCard }>
             <div className={ styles.cardImgBlock }>
                 <div className={ styles.icons }>
-                    { platform.map((item, idx) => (
+                    { platforms.map((item, idx) => (
                         <Fragment key={ idx }>
                             { platformIcons[item] }
                         </Fragment>
@@ -118,7 +120,13 @@ function GameItem(props: GameItemProps) {
                 <Card.Title className='fs-5 fw-bold'>{ name }</Card.Title>
                 <h6>Genre: { genre }</h6>
                 <h6>Age Limit: { ageLimit }+</h6>
-                <Card.Text>{ description }</Card.Text>
+                <Card.Text style={ {
+                    ...(isShortDescription && {
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                    })
+                } }>{ description }</Card.Text>
                 <h6 className='mt-auto mb-4'>Price: { formatCurrency(price) }</h6>
                 { itemQuantity > 0 ? (
                     <div className='text-center'>

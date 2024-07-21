@@ -2,7 +2,7 @@ import builder from '../../../lib/builder'
 import prisma from '../../../lib/prisma'
 import { GraphQLError } from 'graphql/error'
 import PatchCommentInputRef from '../../refs/comment/PatchCommentInput'
-import { UserRole } from '@prisma/client'
+import { UserRole } from '../../generated/prisma-client'
 
 builder.mutationField('patchComment', (t) =>
     t.prismaField({

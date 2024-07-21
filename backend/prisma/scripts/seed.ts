@@ -1,4 +1,9 @@
-import { GamePlatform, PrismaClient, UserRole } from '@prisma/client'
+import {
+    GameGenre,
+    GamePlatform,
+    PrismaClient,
+    UserRole
+} from '../../src/generated/prisma-client'
 import purge from './purge'
 
 const prisma = new PrismaClient()
@@ -7,17 +12,17 @@ const gamesToCreate = [
     {
         ageLimit: 12,
         price: 99.99,
-        platform: [GamePlatform.Pc],
+        platforms: [GamePlatform.Pc],
         description: 'Fullstack React framework 5',
-        genre: 'Action',
+        genre: GameGenre.Action,
         name: 'Spider man'
     },
     {
         ageLimit: 12,
         price: 99.99,
-        platform: [GamePlatform.Playstation],
+        platforms: [GamePlatform.Playstation],
         description: 'Fullstack React framework 5',
-        genre: 'Action',
+        genre: GameGenre.Action,
         name: 'Spider man 2'
     }
 ]
@@ -45,8 +50,8 @@ async function main() {
 
     await prisma.user.create({
         data: {
-            email: 'test@test.com',
-            role: UserRole.Admin
+            email: 'seeded-user@test.com',
+            role: UserRole.User
         }
     })
 

@@ -16,7 +16,22 @@ export default function CreateGameFormFields({
 }: FormikProps<TCreateGameFormValues>) {
 
     const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFieldValue('image', event.target.files)
+        const file = event.target.files?.[0]
+
+        if (!file) {
+            return
+        }
+
+        const twoMbInBytes = 2 * 1024 * 1024
+
+        if (file.size > twoMbInBytes) {
+            event.target.value = ''
+            window.alert('The file is too large')
+
+            return
+        }
+
+        setFieldValue('image', file)
     }
 
     return (
@@ -24,6 +39,7 @@ export default function CreateGameFormFields({
             <InputWithLabel error={errors.image} label='Image'>
                 {createTextField<keyof TCreateGameFormValues>('Image', 'image', 'file', {
                     onChange: onFileChange,
+                    accept: 'image/*',
                 })}
             </InputWithLabel>
             
@@ -79,13 +95,13 @@ export default function CreateGameFormFields({
                 )}
             </InputWithLabel>
 
-            <InputWithLabel error={errors.platform} label='Platforms'>
+            <InputWithLabel error={errors.platforms} label='Platforms'>
                 {createSelectField<keyof TCreateGameFormValues>(
                     undefined,
-                    'platform',
+                    'platforms',
                     GAME_PLATFORM_OPTIONS,
                     {
-                        value: values.platform,
+                        value: values.platforms,
                         onChange: handleChange,
                         multiple: true,
                     },

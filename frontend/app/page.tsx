@@ -38,14 +38,12 @@ export default function Home() {
                             { loading ? (
                                 <Spinner/>
                             ) : <>{ games.map((game) => {
-                                const shortDescription = `${ game.description.substring(0, 100) }...`
-
                                 return (
                                     <div className='col-md-6 col-lg-4 text-black' key={ game.id }>
                                         <GameItem
                                             { ...game }
-                                            description={ shortDescription }
                                             isGamesPage
+                                            isShortDescription
                                         />
                                     </div>
                                 )

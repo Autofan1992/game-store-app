@@ -1,9 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma-client"
 }
 
 generator pothos {
   provider = "prisma-pothos-types"
+  output   = "../src/generated/pothos-types.ts"
 }
 
 datasource db {
@@ -21,8 +23,10 @@ model User {
   role      UserRole  @default(User)
   comments  Comment[]
   games     Game[]
-  like      Like[]
-  rating    Rating[]
+  likes     Like[]
+  ratings   Rating[]
+  cart      Cart?
+  orders    Order[]
 }
 
 model Game {
@@ -31,9 +35,9 @@ model Game {
   updatedAt   DateTime       @updatedAt
   ageLimit    Int
   price       Float
-  platform    GamePlatform[]
+  platforms   GamePlatform[]
   description String
-  genre       String
+  genre       GameGenre
   name        String
   amount      Int            @default(1)
   resourceId  String
@@ -44,6 +48,8 @@ model Game {
   userId      String
   likes       Like[]
   ratings     Rating[]
+  cart        CartItem?
+  orders      OrderItem[]
 }
 
 model Comment {
@@ -64,7 +70,7 @@ model Resource {
   name      String
   url       String
   mimeType  String
-  game      Game[]
+  games     Game[]
 }
 
 model Like {
@@ -90,6 +96,53 @@ model Rating {
   @@id([userId, gameId])
 }
 
+model Cart {
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+}
+
+model CartItem {
+  id     String @id @default(uuid())
+  cartId String @unique
+  gameId String @unique
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  game   Game   @relation(fields: [gameId], references: [id])
+  amount Int    @default(1)
+}
+
+model Order {
+  id            String                   @id @default(uuid())
+  userId        String
+  user          User                     @relation(fields: [userId], references: [id])
+  items         OrderItem[]
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
+  status        OrderStatus              @default(Pending)
+  paymentStatus PaymentStatus            @default(Pending)
+  statusHistory OrderStatusHistoryItem[]
+}
+
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String @unique
+  gameId  String @unique
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  game    Game   @relation(fields: [gameId], references: [id])
+  amount  Int    @default(1)
+}
+
+model OrderStatusHistoryItem {
+  id        String      @id @default(uuid())
+  orderId   String      @unique
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    OrderStatus
+  changedAt DateTime    @default(now())
+}
+
 // enums
 enum UserRole {
   User
@@ -100,4 +153,26 @@ enum GamePlatform {
   Pc
   Playstation
   Xbox
+}
+
+enum GameGenre {
+  Shooter
+  Sandbox
+  RPG
+  Action
+  Simulator
+}
+
+enum OrderStatus {
+  Pending
+  Confirmed
+  Shipped
+  Delivered
+  Cancelled
+}
+
+enum PaymentStatus {
+  Pending
+  Confirmed
+  Failed
 }

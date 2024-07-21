@@ -1,8 +1,8 @@
 import builder from '../../../lib/builder'
 import prisma from '../../../lib/prisma'
+import { UserRole } from '../../generated/prisma-client'
 import CreateGameInputRef from '../../refs/game/CreateGameInput'
 import { GraphQLError } from 'graphql/error'
-import { UserRole } from '@prisma/client'
 
 builder.mutationField('createGame', (t) =>
     t.prismaField({

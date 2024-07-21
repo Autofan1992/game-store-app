@@ -1,5 +1,5 @@
 import ConnectionResponse from '../../types/connectionResponse'
-import { Comment } from '@prisma/client'
+import { Comment } from '../../generated/prisma-client'
 import builder from '../../../lib/builder'
 import CommentRef from './Comment'
 

@@ -1,9 +1,9 @@
 import builder from '../../../lib/builder'
 
-const DeleteCommentInputRef = builder.inputType('DeleteCommentInput', {
+const NodeInputRef = builder.inputType('NodeInput', {
     fields: (t) => ({
         id: t.string({ required: true })
     })
 })
 
-export default DeleteCommentInputRef
+export default NodeInputRef

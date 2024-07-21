@@ -1,7 +1,7 @@
 import * as Types from '../../../../graphql-generated/types';
 
 import { gql } from '@apollo/client';
-export type GameFragment = { __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platform: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } };
+export type GameFragment = { __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platforms: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } };
 
 export type GameAggregateFragment = { __typename?: 'GameAggregate', rating?: number | null, likes: number };
 
@@ -31,7 +31,7 @@ export const GameFragmentDoc = gql`
     ...GameAggregate
   }
   price
-  platform
+  platforms
   image {
     ...GameImage
   }

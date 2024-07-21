@@ -1,8 +1,8 @@
 import { Formik } from 'formik'
 import { Button, ButtonGroup, Form } from 'react-bootstrap'
 
+import { GameGenre } from '../../../../graphql-generated/types'
 import useSearchParams, { ESearchParam } from '../../../../hooks/useSearchParams'
-import { GamesGenres } from '../../../../types/gameCardTypes'
 import { createCheckbox, createSelectField } from '../../../../utils/CustomField'
 
 import {
@@ -13,29 +13,38 @@ import {
 } from './filterGamesFormOptions'
 
 const FilterGamesForm = () => {
-    const [{ gamePlatforms = '', ageLimit = '', genres = '', sortCriteria = '', sortType = '' }, setParams] = useSearchParams()
+    const [{
+        gamePlatforms = '',
+        ageLimit = '',
+        genres = '',
+        sortCriteria = '',
+        sortType = ''
+    }, setParams] = useSearchParams()
 
     return (
         <Formik
             initialValues={ {
                 ageLimit,
                 genres: genres.split(','),
-                gamePlatforms :gamePlatforms.split(','),
+                gamePlatforms: gamePlatforms.split(','),
                 sortCriteria,
                 sortType,
             } }
             onSubmit={ ({ ageLimit, genres, sortCriteria, sortType, gamePlatforms }) => {
+                const joinedGenres = genres?.filter(Boolean).join(',')
+                const joinedPlatforms = gamePlatforms?.filter(Boolean).join(',')
+
                 setParams({
                     [ESearchParam.AgeLimit]: ageLimit,
-                    [ESearchParam.Genres]: genres?.join(','),
-                    [ESearchParam.GamePlatforms]: gamePlatforms?.join(','),
+                    [ESearchParam.Genres]: joinedGenres,
+                    [ESearchParam.GamePlatforms]: joinedPlatforms,
                     [ESearchParam.SortType]: sortType,
                     [ESearchParam.SortCriteria]: sortCriteria
                 })
             } }
         >
             { ({ handleSubmit, resetForm, values, handleChange }) => {
-                const isChecked = (genre: GamesGenres) => values.genres?.includes(genre)
+                const isChecked = (genre: GameGenre) => values.genres?.includes(genre)
 
                 return (
                     <Form onSubmit={ handleSubmit }>
@@ -83,46 +92,16 @@ const FilterGamesForm = () => {
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <p>Genres</p>
-                            <label className='d-flex'>
-                                { createCheckbox('genres', {
-                                    value: GamesGenres.RPG,
-                                    checked: isChecked(GamesGenres.RPG),
-                                    onChange: handleChange,
-                                }) }
-                                <p className='ms-2'>{ GamesGenres.RPG }</p>
-                            </label>
-                            <label className='d-flex mt-2'>
-                                { createCheckbox('genres', {
-                                    onChange: handleChange,
-                                    checked: isChecked(GamesGenres.Action),
-                                    value: GamesGenres.Action,
-                                }) }
-                                <p className='ms-2'>{ GamesGenres.Action }</p>
-                            </label>
-                            <label className='d-flex mt-2'>
-                                { createCheckbox('genres', {
-                                    onChange: handleChange,
-                                    checked: isChecked(GamesGenres.Simulator),
-                                    value: GamesGenres.Simulator,
-                                }) }
-                                <p className='ms-2'>{ GamesGenres.Simulator }</p>
-                            </label>
-                            <label className='d-flex mt-2'>
-                                { createCheckbox('genres', {
-                                    onChange: handleChange,
-                                    checked: isChecked(GamesGenres.Shooter),
-                                    value: GamesGenres.Shooter,
-                                }) }
-                                <p className='ms-2'>{ GamesGenres.Shooter }</p>
-                            </label>
-                            <label className='d-flex mt-2'>
-                                { createCheckbox('genres', {
-                                    onChange: handleChange,
-                                    checked: isChecked(GamesGenres.Sandbox),
-                                    value: GamesGenres.Sandbox,
-                                }) }
-                                <p className='ms-2'>{ GamesGenres.Sandbox }</p>
-                            </label>
+                            { Object.values(GameGenre).map((value) => (
+                                <label className='d-flex mt-2' key={ value }>
+                                    { createCheckbox('genres', {
+                                        onChange: handleChange,
+                                        checked: isChecked(value),
+                                        value,
+                                    }) }
+                                    <p className='ms-2'>{ value }</p>
+                                </label>
+                            )) }
                         </Form.Group>
                         <ButtonGroup className='d-flex'>
                             <Button className='w-100' type='submit' variant='outline-primary'>
