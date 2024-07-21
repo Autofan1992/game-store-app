@@ -1,41 +1,35 @@
 import { GamePlatform, GameSortCriteria, OrderBy } from '../../../../graphql-generated/types'
 import {
-    AgesLimit,
-
+    AgesLimit
 } from '../../../../types/gameCardTypes'
 
 export const ageLimitOptions = [
     {
-        value: AgesLimit.All,
+        value: '',
         label: 'All ages',
     },
     {
         value: AgesLimit.Three,
-        label: `Above ${AgesLimit.Three}`,
+        label: `Above ${ AgesLimit.Three }`,
     },
     {
         value: AgesLimit.Six,
-        label: `Above ${AgesLimit.Six}`,
+        label: `Above ${ AgesLimit.Six }`,
     },
     {
         value: AgesLimit.Twelve,
-        label: `Above ${AgesLimit.Twelve}`,
+        label: `Above ${ AgesLimit.Twelve }`,
     },
     {
         value: AgesLimit.Sixteen,
-        label: `Above ${AgesLimit.Sixteen}`,
+        label: `Above ${ AgesLimit.Sixteen }`,
     },
     {
         value: AgesLimit.Eighteen,
-        label: `Above ${AgesLimit.Eighteen}`,
+        label: `Above ${ AgesLimit.Eighteen }`,
     },
 ]
-
 export const gamePlatformsOptions = [
-    {
-        value: undefined,
-        label: 'All platforms',
-    },
     {
         value: GamePlatform.Pc,
         label: 'Pc',
@@ -52,7 +46,7 @@ export const gamePlatformsOptions = [
 
 export const sortCriteriaOptions = [
     {
-        value: undefined,
+        value: '',
         label: 'Select sort criteria',
     },
     {

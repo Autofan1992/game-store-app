@@ -1,7 +1,7 @@
 import ConnectionPaginationRef from '../common/ConnectionPagination'
 import OrderByRef, { OrderBy } from '../common/OrderBy'
 import builder from '../../../lib/builder'
-import { GamePlatformRef } from './Game'
+import { GameGenreRef, GamePlatformRef } from './Game'
 
 const GameConnectionInputRef = builder.inputType('GameConnectionInput', {
     fields: (t) => ({
@@ -14,7 +14,7 @@ const GameConnectionInputWhereRef = builder.inputType(
     'GameConnectionInputWhere',
     {
         fields: (t) => ({
-            genres: t.stringList(),
+            genres: t.field({ type: [GameGenreRef] }),
             ageLimit: t.int(),
             orderBy: t.field({ type: OrderByRef, defaultValue: OrderBy.Asc }),
             sortCriteria: t.field({ type: GameSortCriteriaRef }),

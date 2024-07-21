@@ -1,7 +1,7 @@
 import builder from '../../../lib/builder'
-import { GamePlatform, UserRole } from '@prisma/client'
 import GameAggregateRef from './GameAggregate'
 import prisma from '../../../lib/prisma'
+import { GameGenre, GamePlatform, UserRole } from '../../generated/prisma-client'
 
 const GameRef = builder.prismaObject('Game', {
     fields: (t) => ({
@@ -14,7 +14,7 @@ const GameRef = builder.prismaObject('Game', {
         }),
         ageLimit: t.exposeInt('ageLimit'),
         price: t.exposeFloat('price'),
-        platform: t.expose('platform', {
+        platforms: t.expose('platforms', {
             type: [GamePlatformRef]
         }),
         description: t.exposeString('description'),
@@ -81,4 +81,8 @@ export default GameRef
 
 export const GamePlatformRef = builder.enumType('GamePlatform', {
     values: Object.values(GamePlatform)
+})
+
+export const GameGenreRef = builder.enumType('GameGenre', {
+    values: Object.values(GameGenre)
 })

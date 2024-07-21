@@ -9,7 +9,7 @@ export type GameForGamePageQueryVariables = Types.Exact<{
 }>;
 
 
-export type GameForGamePageQuery = { __typename?: 'Query', game?: { __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platform: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } } | null };
+export type GameForGamePageQuery = { __typename?: 'Query', game?: { __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platforms: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } } | null };
 
 
 export const GameForGamePageDocument = gql`

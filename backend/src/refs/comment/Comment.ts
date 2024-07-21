@@ -1,5 +1,5 @@
 import builder from '../../../lib/builder'
-import { UserRole } from '@prisma/client'
+import { UserRole } from '../../generated/prisma-client'
 
 const CommentRef = builder.prismaObject('Comment', {
     fields: (t) => ({

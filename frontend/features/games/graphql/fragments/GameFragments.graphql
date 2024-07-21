@@ -9,7 +9,7 @@ fragment Game on Game {
         ...GameAggregate
     }
     price
-    platform
+    platforms
     image {
         ...GameImage
     }

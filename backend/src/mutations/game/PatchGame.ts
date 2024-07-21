@@ -2,7 +2,7 @@ import builder from '../../../lib/builder'
 import prisma from '../../../lib/prisma'
 import { GraphQLError } from 'graphql/error'
 import PatchGameInputRef from '../../refs/game/PatchGameInput'
-import { UserRole } from '@prisma/client'
+import { UserRole } from '../../generated/prisma-client'
 
 builder.mutationField('patchGame', (t) =>
     t.prismaField({

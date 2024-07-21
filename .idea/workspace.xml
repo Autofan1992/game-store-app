@@ -5,23 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05270c94-d912-478d-8f6e-c86076c9d9c6" name="Changes" comment="setup docker image for backend">
-      <change afterPath="$PROJECT_DIR$/backend/lib/pubsub.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/subscriptions/comment/CommentAdded.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/features/comments/graphql/subscriptions/OnCommentAdded.generated.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/features/comments/graphql/subscriptions/OnCommentAdded.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/prisma/migrations/20240616121449_create_order_and_cart_models/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/prisma/migrations/20240616122244_migrate_to_new_game_genre_type/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/prisma/migrations/20240616122440_replace_old_genre_field_with_a_new_one_aftre_migratiom/migration.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/mutations/cart/CreateCart.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/refs/cart/Cart.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/refs/cart/CartItem.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/refs/cart/CreateCartInput.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/refs/cart/CreateCartItemInput.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lib/builder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lib/builder.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/lib/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/lib/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/backend/prisma/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/context/context.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/context/context.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/mutations/comment/CreateComment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/mutations/comment/CreateComment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/apollo/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/apollo/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/games/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/games/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/features/comments/api-hooks/useGetCommentsForGamesPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/comments/api-hooks/useGetCommentsForGamesPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/queries/game/GameConnection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/queries/game/GameConnection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/refs/game/CreateGameInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/refs/game/CreateGameInput.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/refs/game/Game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/refs/game/Game.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/refs/game/GameConnectionInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/refs/game/GameConnectionInput.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/refs/game/PatchGameInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/refs/game/PatchGameInput.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/games/create/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/components/CreateGameFormFields/CreateGameFormFields.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/components/CreateGameFormFields/CreateGameFormFields.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/components/FilterGamesForm/FilterGamesForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/components/FilterGamesForm/FilterGamesForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/components/FilterGamesForm/filterGamesFormOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/components/FilterGamesForm/filterGamesFormOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/components/GameItem/GameItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/components/GameItem/GameItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/constants/games.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/constants/games.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/fragments/GameFragments.generated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/fragments/GameFragments.generated.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/fragments/GameFragments.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/fragments/GameFragments.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/mutations/CreateGame.generated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/mutations/CreateGame.generated.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/mutations/PatchGame.generated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/mutations/PatchGame.generated.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/queries/GameForGamePage.generated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/queries/GameForGamePage.generated.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/features/games/graphql/queries/GamesForHomePage.generated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/features/games/graphql/queries/GamesForHomePage.generated.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/graphql-generated/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,33 +67,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;configure-fe-ci-cd-pipline&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/pet-projects/game-store-app/frontend/features/comments/graphql/subscriptions&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\pet-projects\\game-store-app\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "configure-fe-ci-cd-pipline",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/pet-projects/game-store-app/backend/src/refs/cart",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\pet-projects\\game-store-app\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\pet-projects\game-store-app\backend\src\refs\cart" />
+      <recent name="C:\pet-projects\game-store-app\backend\src\mutations\cart" />
       <recent name="C:\pet-projects\game-store-app\frontend\features\comments\graphql\subscriptions" />
       <recent name="C:\pet-projects\game-store-app\backend\src\subscriptions" />
       <recent name="C:\pet-projects\game-store-app\frontend\features\games\graphql\mutations" />
-      <recent name="C:\pet-projects\game-store-app\frontend\features\comments\graphql\mutations" />
-      <recent name="C:\pet-projects\game-store-app\backend\src\refs\comment" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\pet-projects\game-store-app\backend\src\subscriptions\comment" />
@@ -119,7 +132,10 @@
       <workItem from="1717325004041" duration="18573000" />
       <workItem from="1717751348639" duration="2455000" />
       <workItem from="1717753880888" duration="39000" />
-      <workItem from="1717753927081" duration="5458000" />
+      <workItem from="1717753927081" duration="5659000" />
+      <workItem from="1718535727353" duration="996000" />
+      <workItem from="1718536931159" duration="12717000" />
+      <workItem from="1718550738719" duration="1665000" />
     </task>
     <task id="LOCAL-00001" summary="fix build">
       <option name="closed" value="true" />

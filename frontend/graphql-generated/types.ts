@@ -66,10 +66,10 @@ export type CreateGameInput = {
   ageLimit: Scalars['Int']['input'];
   amount: Scalars['Int']['input'];
   description: Scalars['String']['input'];
-  genre: Scalars['String']['input'];
+  genre: GameGenre;
   imageId: Scalars['String']['input'];
   name: Scalars['String']['input'];
-  platform: Array<GamePlatform>;
+  platforms: Array<GamePlatform>;
   price: Scalars['Float']['input'];
 };
 
@@ -91,7 +91,7 @@ export type Game = {
   isEditable: Scalars['Boolean']['output'];
   isLiked: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
-  platform: Array<GamePlatform>;
+  platforms: Array<GamePlatform>;
   price: Scalars['Float']['output'];
   updatedAt: Scalars['Date']['output'];
   user: User;
@@ -111,7 +111,7 @@ export type GameConnectionInput = {
 
 export type GameConnectionInputWhere = {
   ageLimit?: InputMaybe<Scalars['Int']['input']>;
-  genres?: InputMaybe<Array<Scalars['String']['input']>>;
+  genres?: InputMaybe<Array<GameGenre>>;
   name?: InputMaybe<Scalars['String']['input']>;
   orderBy?: InputMaybe<OrderBy>;
   platforms?: InputMaybe<Array<GamePlatform>>;
@@ -124,6 +124,14 @@ export type GameConnectionResponse = {
   nodes: Array<Game>;
   totalCount: Scalars['Int']['output'];
 };
+
+export enum GameGenre {
+  Action = 'Action',
+  Rpg = 'RPG',
+  Sandbox = 'Sandbox',
+  Shooter = 'Shooter',
+  Simulator = 'Simulator'
+}
 
 export type GameInput = {
   id: Scalars['String']['input'];
@@ -195,7 +203,7 @@ export type PatchGameInput = {
   ageLimit?: InputMaybe<Scalars['Int']['input']>;
   amount?: InputMaybe<Scalars['Int']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  genre?: InputMaybe<Scalars['String']['input']>;
+  genre?: InputMaybe<GameGenre>;
   id: Scalars['String']['input'];
   imageId?: InputMaybe<Scalars['String']['input']>;
   like?: InputMaybe<Scalars['Boolean']['input']>;

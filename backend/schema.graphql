@@ -1,3 +1,18 @@
+type Cart {
+  createdAt: Date!
+  id: ID!
+  items: [CartItem!]!
+  updatedAt: Date!
+  user: User!
+}
+
+type CartItem {
+  amount: Int!
+  cart: Cart!
+  game: Game!
+  id: ID!
+}
+
 type Comment {
   createdAt: String!
   game: Game!
@@ -37,6 +52,10 @@ input ConnectionInputPagination {
   take: Int
 }
 
+input CreateCartItemInput {
+  gameId: String!
+}
+
 input CreateCommentInput {
   gameId: String!
   text: String!
@@ -46,10 +65,10 @@ input CreateGameInput {
   ageLimit: Int!
   amount: Int!
   description: String!
-  genre: String!
+  genre: GameGenre!
   imageId: String!
   name: String!
-  platform: [GamePlatform!]!
+  platforms: [GamePlatform!]!
   price: Float!
 }
 
@@ -57,10 +76,6 @@ input CreateGameInput {
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar Date
-
-input DeleteCommentInput {
-  id: String!
-}
 
 scalar File
 
@@ -77,7 +92,7 @@ type Game {
   isEditable: Boolean!
   isLiked: Boolean!
   name: String!
-  platform: [GamePlatform!]!
+  platforms: [GamePlatform!]!
   price: Float!
   updatedAt: Date!
   user: User!
@@ -96,7 +111,7 @@ input GameConnectionInput {
 
 input GameConnectionInputWhere {
   ageLimit: Int
-  genres: [String!]
+  genres: [GameGenre!]
   name: String
   orderBy: OrderBy = asc
   platforms: [GamePlatform!]
@@ -107,6 +122,14 @@ type GameConnectionResponse {
   hasMore: Boolean!
   nodes: [Game!]!
   totalCount: Int!
+}
+
+enum GameGenre {
+  Action
+  RPG
+  Sandbox
+  Shooter
+  Simulator
 }
 
 input GameInput {
@@ -126,17 +149,55 @@ enum GameSortCriteria {
 }
 
 type Mutation {
+  createCartItem(input: CreateCartItemInput!): CartItem!
   createComment(input: CreateCommentInput!): Comment!
   createGame(input: CreateGameInput!): Game!
-  deleteComment(input: DeleteCommentInput!): Comment!
+  createOrder: Order!
+  deleteCartItem(input: NodeInput!): CartItem!
+  deleteComment(input: NodeInput!): Comment!
+  deleteOrder(input: NodeInput!): Order!
+  patchCartItem(input: PatchCartItemInput!): CartItem!
   patchComment(input: PatchCommentInput!): Comment!
   patchGame(input: PatchGameInput!): Game!
+  patchOrder(input: PatchOrderInput!): Order!
   uploadResource(input: UploadResourceInput!): Resource
+}
+
+input NodeInput {
+  id: String!
+}
+
+type Order {
+  createdAt: Date!
+  id: ID!
+  items: [OrderItem!]!
+  updatedAt: Date!
+  user: User!
 }
 
 enum OrderBy {
   asc
   desc
+}
+
+type OrderItem {
+  amount: Int!
+  game: Game!
+  id: ID!
+  order: Order!
+}
+
+enum OrderStatus {
+  Cancelled
+  Confirmed
+  Delivered
+  Pending
+  Shipped
+}
+
+input PatchCartItemInput {
+  amount: Int
+  itemId: String!
 }
 
 input PatchCommentInput {
@@ -148,7 +209,7 @@ input PatchGameInput {
   ageLimit: Int
   amount: Int
   description: String
-  genre: String
+  genre: GameGenre
   id: String!
   imageId: String
   like: Boolean
@@ -157,7 +218,20 @@ input PatchGameInput {
   rating: Float
 }
 
+input PatchOrderInput {
+  id: String!
+  paymentStatus: PaymentStatus
+  status: OrderStatus
+}
+
+enum PaymentStatus {
+  Confirmed
+  Failed
+  Pending
+}
+
 type Query {
+  cart: Cart
   commentConnection(input: CommentConnectionInput): CommentConnectionResponse!
   game(input: GameInput!): Game
   gameConnection(input: GameConnectionInput): GameConnectionResponse!

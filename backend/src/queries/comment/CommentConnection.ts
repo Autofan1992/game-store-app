@@ -1,9 +1,9 @@
 import builder from '../../../lib/builder'
 import { getConnectionPagination } from '../../utils/connection.utils'
 import prisma from '../../../lib/prisma'
-import {  Prisma } from '@prisma/client'
 import CommentConnectionResponseRef from '../../refs/comment/CommentConnectionResponse'
 import CommentConnectionInputRef, { CommentSortCriteria } from '../../refs/comment/CommentConnectionInput'
+import { Prisma } from '../../generated/prisma-client'
 
 builder.queryField('commentConnection', (t) =>
     t.field({

@@ -9,7 +9,7 @@ export type GamesForHomePageQueryVariables = Types.Exact<{
 }>;
 
 
-export type GamesForHomePageQuery = { __typename?: 'Query', gameConnection: { __typename?: 'GameConnectionResponse', totalCount: number, hasMore: boolean, nodes: Array<{ __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platform: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } }> } };
+export type GamesForHomePageQuery = { __typename?: 'Query', gameConnection: { __typename?: 'GameConnectionResponse', totalCount: number, hasMore: boolean, nodes: Array<{ __typename?: 'Game', id: string, name: string, ageLimit: number, description: string, isLiked: boolean, genre: string, price: number, platforms: Array<Types.GamePlatform>, aggregate: { __typename?: 'GameAggregate', rating?: number | null, likes: number }, image: { __typename?: 'Resource', id: string, url: string } }> } };
 
 
 export const GamesForHomePageDocument = gql`

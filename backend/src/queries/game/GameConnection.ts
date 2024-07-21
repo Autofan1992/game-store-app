@@ -3,7 +3,7 @@ import builder from '../../../lib/builder'
 import { getConnectionPagination } from '../../utils/connection.utils'
 import prisma from '../../../lib/prisma'
 import GameConnectionInputRef from '../../refs/game/GameConnectionInput'
-import { GamePlatform, Prisma } from '@prisma/client'
+import { GameGenre, GamePlatform, Prisma } from '../../generated/prisma-client'
 
 builder.queryField('gameConnection', (t) =>
     t.field({
@@ -23,12 +23,13 @@ builder.queryField('gameConnection', (t) =>
                     },
                     {
                         genre: {
-                            in: where?.genres ?? undefined,
-                            mode: 'insensitive'
+                            in:
+                                where?.genres ??
+                                Object.values(GameGenre)
                         }
                     },
                     {
-                        platform: {
+                        platforms: {
                             hasSome:
                                 where?.platforms ??
                                 Object.values(GamePlatform)

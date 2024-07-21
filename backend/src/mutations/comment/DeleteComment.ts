@@ -1,13 +1,13 @@
 import builder from '../../../lib/builder'
 import prisma from '../../../lib/prisma'
 import { GraphQLError } from 'graphql/error'
-import DeleteCommentInputRef from '../../refs/comment/DeleteCommentInput'
-import { UserRole } from '@prisma/client'
+import { UserRole } from '../../generated/prisma-client'
+import NodeInputRef from '../../refs/common/NodeInput'
 
 builder.mutationField('deleteComment', (t) =>
     t.prismaField({
         args: {
-            input: t.arg({ type: DeleteCommentInputRef, required: true })
+            input: t.arg({ type: NodeInputRef, required: true })
         },
         type: 'Comment',
         resolve: async (query, _, { input: { id } }, ctx) => {
