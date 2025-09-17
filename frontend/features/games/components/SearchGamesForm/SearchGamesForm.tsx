@@ -9,37 +9,42 @@ const SearchGamesForm = () => {
 
     return (
         <Formik
-            initialValues={ {
+            initialValues={{
                 name: search,
-            } }
-            onSubmit={ ({ name }) => {
+            }}
+            onSubmit={({ name }) => {
                 setParams({ [ESearchParam.Search]: name })
-            } }
+            }}
         >
-            { ({ handleSubmit, values, handleChange, resetForm }) => (
-                <Form onSubmit={ handleSubmit }>
+            {({ handleSubmit, values, handleChange, resetForm }) => (
+                <Form onSubmit={handleSubmit}>
                     <Row className='justify-content-center mb-4'>
-                        <Col lg={ 6 }>
+                        <Col lg={6}>
                             <div className='d-md-flex'>
                                 <Form.Group className='me-3 position-relative w-100 flex-grow-1'>
                                     <label className='d-block'>
-                                        { createTextField('Type game name', 'name', 'text', {
+                                        {createTextField('Type game name', 'name', 'text', {
                                             value: values.name,
                                             onChange: handleChange,
-                                        }) }
+                                            ['data-testid']: 'games-search-input',
+                                        })}
 
-                                        { values.name && <Button
-                                            className='position-absolute top-0 end-0'
-                                            onClick={ () => {
-                                                setParams({ [ESearchParam.Search]: undefined })
-                                                resetForm()
-                                            } }
-                                        >
-                                            &times;
-                                        </Button> }
+                                        {values.name && (
+                                            <Button
+                                                data-testid='games-search-clear-button'
+                                                className='position-absolute top-0 end-0'
+                                                onClick={() => {
+                                                    setParams({ [ESearchParam.Search]: undefined })
+                                                    resetForm()
+                                                }}
+                                            >
+                                                &times;
+                                            </Button>
+                                        )}
                                     </label>
                                 </Form.Group>
                                 <Button
+                                    data-testid='games-search-button'
                                     className='w-100 mt-2 mt-md-0'
                                     type='submit'
                                     variant='primary'
@@ -50,7 +55,7 @@ const SearchGamesForm = () => {
                         </Col>
                     </Row>
                 </Form>
-            ) }
+            )}
         </Formik>
     )
 }

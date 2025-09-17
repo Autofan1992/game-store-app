@@ -26,28 +26,37 @@ export default function Home() {
 
     return (
         <Container className='py-5'>
-            <h1 className='text-center mb-5'>Home</h1>
+            <h1 className='text-center mb-5' data-testid='home-page-title'>
+                Home
+            </h1>
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
                     <div className='cards-row rounded-styled-block'>
                         <div className='row-title text-white'>
                             <h3>New Games</h3>
-                            <hr/>
+                            <hr />
                         </div>
                         <div className='row justify-content-center g-3'>
-                            { loading ? (
-                                <Spinner/>
-                            ) : <>{ games.map((game) => {
-                                return (
-                                    <div className='col-md-6 col-lg-4 text-black' key={ game.id }>
-                                        <GameItem
-                                            { ...game }
-                                            isGamesPage
-                                            isShortDescription
-                                        />
-                                    </div>
-                                )
-                            }) }</> }
+                            {loading ? (
+                                <Spinner />
+                            ) : (
+                                <>
+                                    {games.map((game) => {
+                                        return (
+                                            <div
+                                                className='col-md-6 col-lg-4 text-black'
+                                                key={game.id}
+                                            >
+                                                <GameItem
+                                                    {...game}
+                                                    isGamesPage
+                                                    isShortDescription
+                                                />
+                                            </div>
+                                        )
+                                    })}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -20,13 +20,13 @@ const useSearchParams = (): [TSearchParams, (value: TSearchParams) => void] => {
     const searchParams = useNextSearchParams()
     const paramsObj: TSearchParams = {}
 
-    searchParams.forEach((value, key) => {
+    searchParams?.forEach((value, key) => {
         paramsObj[key as ESearchParam] = value
     })
 
     const setParams = useCallback(
         (value: TSearchParams) => {
-            const params = new URLSearchParams(searchParams.toString())
+            const params = new URLSearchParams(searchParams?.toString())
 
             for (const param in value) {
                 if (value[param as ESearchParam]) {
@@ -39,7 +39,7 @@ const useSearchParams = (): [TSearchParams, (value: TSearchParams) => void] => {
             const queryString = params.toString()
             router.push(pathname + '?' + queryString)
         },
-        [pathname, router, searchParams]
+        [pathname, router, searchParams],
     )
 
     return [paramsObj, setParams]
